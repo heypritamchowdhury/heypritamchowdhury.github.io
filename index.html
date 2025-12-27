@@ -15,7 +15,7 @@
   --text-muted: #6B7280;
   --primary: #4F46E5;
   --primary-hover: #4338ca;
-  --whatsapp: #25D366; /* WhatsApp Green */
+  --whatsapp: #25D366;
   --border: #E5E7EB;
   --radius: 16px;
   --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
@@ -130,23 +130,24 @@ a{text-decoration:none;color:inherit;transition:0.3s}
   margin-bottom: 20px;
 }
 
-/* UPDATED: Photo Card with Auto-Fit Logic */
+/* --- UPDATE: Hero Image Natural Fit --- */
 .photo-card{
   border-radius:24px;
   overflow:hidden;
   position: relative;
   box-shadow: var(--shadow-hover);
-  aspect-ratio: 3/4; /* Keeps rectangle shape */
   background: #f3f4f6;
+  /* Height ko auto kar diya taaki image original ratio me dikhe */
+  height: auto; 
 }
 .photo-card img{
   width:100%;
-  height: 100%;
+  height: auto; /* Original Aspect Ratio maintain rahega */
   display:block;
-  object-fit: cover; /* Ensures image fills box perfectly */
   transition:transform 0.6s;
 }
 .photo-card:hover img{transform:scale(1.05)}
+
 
 /* LOGOS */
 .brand-section {
@@ -171,12 +172,12 @@ a{text-decoration:none;color:inherit;transition:0.3s}
   gap: 48px;
   opacity: 0.6;
 }
-/* UPDATED: Logos Auto-Fit */
+/* Logos Natural Fit */
 .logo-item {
-  height: 32px;
+  height: 32px; /* Height fix rakhi hai taaki grid neat lage */
   width: auto;
-  max-width: 120px; /* Prevents huge logos */
-  object-fit: contain;
+  max-width: 150px;
+  object-fit: contain; /* Logo katega nahi, pura dikhega */
   filter: grayscale(100%);
   transition: 0.4s;
   cursor: pointer;
@@ -260,7 +261,7 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 .exp-bg{
   position:absolute;
   inset:0;
-  background-size:cover;
+  background-size:cover; /* Background hamesha pura area cover karega */
   background-position:center;
   opacity: 0.7;
   transition:0.6s;
@@ -318,28 +319,31 @@ a{text-decoration:none;color:inherit;transition:0.3s}
   gap: 10px;
 }
 
-/* UPDATED: GALLERY Auto-Fit */
+/* --- UPDATE: GALLERY Natural Fit --- */
 .gallery{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:24px;
+  align-items: start; /* Columns upar se start honge */
 }
 .media{
   border-radius:16px;
   overflow:hidden;
   border:1px solid var(--border);
-  aspect-ratio: 4/5; /* Forces Instagram Portrait Size */
+  /* Aspect Ratio Hata diya, ab original shape rahega */
+  height: auto;
   background: #000;
   position: relative;
   transition: 0.3s;
 }
 .media:hover { transform: scale(1.02); }
 
+/* Image aur Video ko 'cover' se hata kar 'block' kar diya */
 .media img, 
 .media video{ 
   width:100%; 
-  height:100%; 
-  object-fit:cover; /* Crops images to fit perfectly */
+  height: auto; /* Natural Height - No Cropping */
+  display: block;
 }
 
 /* FORM & WHATSAPP */
