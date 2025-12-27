@@ -3,479 +3,325 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Pritam — Performance Marketer & Creative Strategist</title>
+<title>Pritam — Performance Marketer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg-body: #FAFAFA;
-  --bg-card: #FFFFFF;
-  --text-main: #111827;
-  --text-muted: #6B7280;
-  --primary: #4F46E5;
-  --primary-hover: #4338ca;
-  --whatsapp: #25D366;
-  --border: #E5E7EB;
-  --radius: 16px;
-  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
-  --shadow-hover: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+:root {
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-body{
-  margin:0;
-  font-family:'Inter', sans-serif;
-  color:var(--text-main);
-  background:var(--bg-body);
-  line-height:1.6;
-  -webkit-font-smoothing: antialiased;
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-main);
+  background: transparent; /* Important: Taaki piche ka wallpaper dikhe */
+  line-height: 1.6;
   overflow-x: hidden;
   width: 100%;
 }
 
-a{text-decoration:none;color:inherit;transition:0.3s}
+/* --- 1. LIVE ANIMATED WALLPAPER (Fixed & Faster) --- */
+.ambient-bg {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: #F1F5F9; /* Base color light grey */
+  z-index: -5; /* Sabse piche */
+  overflow: hidden;
+}
 
-.container{
-  max-width:1100px;
-  margin:0 auto;
+/* Moving Blobs - Colours Darker & Faster */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px); /* Blur thoda kam kiya taaki shape dikhe */
+  opacity: 0.7; /* Opacity badhai */
+}
+
+/* Violet Blob - Fast Move */
+.blob-1 {
+  top: -10%; left: -10%;
+  width: 60vw; height: 60vw;
+  background: #A78BFA; 
+  animation: float 8s infinite alternate ease-in-out;
+}
+
+/* Blue Blob - Fast Move */
+.blob-2 {
+  bottom: -10%; right: -10%;
+  width: 50vw; height: 50vw;
+  background: #60A5FA;
+  animation: float 10s infinite alternate-reverse ease-in-out;
+}
+
+/* Pink Blob - Center Rotation */
+.blob-3 {
+  top: 30%; left: 30%;
+  width: 40vw; height: 40vw;
+  background: #F472B6;
+  opacity: 0.5;
+  animation: float-center 12s infinite linear; 
+}
+
+/* Faster Animations */
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 60px) scale(1.05); }
+  100% { transform: translate(-40px, 20px) scale(0.95); }
+}
+
+@keyframes float-center {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  50% { transform: translate(-40%, -60%) rotate(180deg) scale(1.1); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+/* --- 2. GRAIN TEXTURE (Visible) --- */
+.noise-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1;
+  opacity: 0.07;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --- GLASS CONTAINER --- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
   width: 100%;
   padding: 0 24px;
+  position: relative;
+  z-index: 2; /* Content upar rahega */
 }
 
-/* ANIMATIONS */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-}
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* --- HEADER GLASS --- */
+.header {
+  position: sticky;
+  top: 20px;
+  margin: 0 20px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 16px;
+  z-index: 100;
+  padding: 14px 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
 }
 
-/* HEADER */
-.header{
-  position:sticky;
-  top:0;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(0,0,0,0.05);
-  z-index:100;
-  padding:16px 0;
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
 }
-.header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.brand{
-  font-weight:700;
-  font-size: 20px;
-  color:var(--text-main);
-  letter-spacing: -0.5px;
-}
-.nav{display:flex;gap:24px;align-items:center}
-.nav a{
-  font-size:14px;
-  color:var(--text-muted);
-  font-weight:500;
-}
-.nav a:hover{color:var(--primary)}
-.nav-links { display: flex; gap: 20px; }
+.brand { font-weight: 800; font-size: 22px; color: #1e293b; letter-spacing: -0.5px; }
+.nav { display: flex; gap: 32px; align-items: center; }
+.nav a { font-size: 14px; color: #64748b; font-weight: 600; }
+.nav a:hover { color: #6366F1; }
+.nav-links { display: flex; gap: 24px; }
 
-/* Buttons */
-.cta-btn{
-  padding:12px 24px;
-  border-radius:50px;
-  background:var(--primary);
-  color:#fff;
-  font-weight:600;
-  font-size: 14px;
-  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
-  transition: transform 0.2s, background 0.2s;
+/* --- MODERN BUTTON --- */
+.cta-btn {
+  padding: 14px 32px;
+  border-radius: 50px;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   cursor: pointer;
   display: inline-block;
-}
-.cta-btn:hover{
-  background:var(--primary-hover);
-  transform:translateY(-1px);
-}
-
-/* HERO */
-.hero{
-  display:grid;
-  grid-template-columns:1fr 400px;
-  gap:48px;
-  padding:100px 24px 60px; 
-  align-items: center;
-}
-.hero h1{
-  font-size:48px;
-  line-height:1.1;
-  letter-spacing: -1.5px;
-  margin-bottom: 20px;
-  color: var(--text-main);
-}
-.hero p{
-  color:var(--text-muted);
-  font-size:18px;
-  margin-bottom: 24px;
-  max-width:90%;
-}
-.trust-badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  background: #EEF2FF;
-  color: var(--primary);
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.photo-card{
-  border-radius:24px;
-  overflow:hidden;
   position: relative;
-  box-shadow: var(--shadow-hover);
-  background: #f3f4f6;
-  height: auto; 
+  overflow: hidden;
 }
-.photo-card img{
-  width:100%;
-  height: auto; 
-  display:block;
-  transition:transform 0.6s;
+.cta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.5);
 }
-.photo-card:hover img{transform:scale(1.05)}
+.cta-btn::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.6s;
+}
+.cta-btn:hover::before { left: 100%; }
 
+/* --- HERO --- */
+.hero {
+  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px;
+  padding: 140px 24px 100px; align-items: center;
+}
+.hero h1 {
+  font-size: 60px; line-height: 1.1; letter-spacing: -2.5px;
+  margin-bottom: 24px; font-weight: 800; color: #1e293b;
+}
+.gradient-text {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { color: #475569; font-size: 20px; margin-bottom: 32px; max-width: 90%; font-weight: 500; }
 
-/* LOGOS */
-.brand-section {
-  text-align: center;
-  padding: 60px 24px;
-  border-bottom: 1px solid var(--border);
-}
-.brand-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 30px;
-  display: block;
-  opacity: 0.7;
-}
-.logo-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 48px;
-  opacity: 1;
-}
-.logo-item {
-  height: 32px; 
-  width: auto;
-  max-width: 150px;
-  object-fit: contain; 
-  filter: grayscale(none);
-  transition: 0.4s;
-  cursor: pointer;
-}
-.logo-item:hover {
-  filter: grayscale(none);
-  opacity: 1;
-  transform: translateY(-2px);
+.trust-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+  color: #6366F1; border-radius: 50px; font-size: 13px; font-weight: 700; margin-bottom: 24px;
 }
 
-/* SECTIONS */
-.section{padding:100px 24px;} 
-.section h2{
-  font-size: 32px;
-  letter-spacing: -1px;
-  margin-bottom: 40px;
+/* Glass Card for Photo */
+.photo-card {
+  border-radius: 32px; overflow: hidden; position: relative;
+  background: rgba(255,255,255,0.4); /* Glass layer */
+  padding: 8px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+  transform: rotate(2deg); transition: 0.5s ease;
+  backdrop-filter: blur(8px);
 }
+.photo-card img { width: 100%; display: block; border-radius: 24px; }
+.photo-card:hover { transform: rotate(0deg) scale(1.02); }
 
-/* SERVICES */
-.services{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.service{
-  padding:32px;
-  border-radius:var(--radius);
-  background:var(--bg-card);
-  border:1px solid var(--border);
-  transition:0.4s;
-}
-.service:hover{
-  transform:translateY(-8px);
-  box-shadow:var(--shadow-hover);
-  border-color: rgba(79, 70, 229, 0.3);
-}
-.service h3{
-  margin:0 0 12px;
-  font-size: 20px;
-}
-.service p { margin: 0; color: var(--text-muted); font-size: 15px; }
+/* --- SECTIONS --- */
+.section { padding: 120px 24px; }
+.section h2 { font-size: 42px; letter-spacing: -1.5px; margin-bottom: 50px; font-weight: 800; color: #1e293b; }
 
-/* SKILLS */
-.skills-grid{
-  display:flex;
-  flex-wrap: wrap;
-  gap:12px;
+/* Services Glass Cards */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.service {
+  padding: 40px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.5); /* More visible glass */
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.8);
+  transition: 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
-.skill{
-  padding:10px 18px;
-  border-radius:100px;
-  background:#fff;
-  border:1px solid var(--border);
-  font-size:14px;
-  font-weight:500;
-  color: var(--text-main);
-  transition:0.3s;
+.service:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.25);
+  border-color: #a5b4fc;
 }
-.skill:hover{
-  border-color:var(--primary);
-  color: var(--primary);
-  background: #EEF2FF;
-}
+.service h3 { margin: 0 0 12px; font-size: 22px; font-weight: 700; color: #1e293b; }
+.service p { margin: 0; color: #475569; font-size: 16px; line-height: 1.6; }
 
-/* EXPERIENCE */
-.experience-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
+/* Skills */
+.skills-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+.skill {
+  padding: 12px 24px; border-radius: 100px;
+  background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.7);
+  font-size: 15px; font-weight: 600; color: #334155; transition: 0.3s;
 }
-.exp-card{
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  height:360px;
-  background:#000;
-  display: flex;
-  align-items: flex-end;
-  transition: 0.4s;
-}
-.exp-bg{
-  position:absolute;
-  inset:0;
-  background-size:cover; 
-  background-position:center;
-  opacity: 0.7;
-  transition:0.6s;
-}
-.exp-card:hover .exp-bg{transform:scale(1.1); opacity: 0.5;}
-.exp-content{
-  position:relative;
-  z-index:2;
-  padding:24px;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-  color: #fff;
-}
-.exp-content h3{ margin: 0 0 6px; font-size: 18px;}
-.exp-content p{ margin: 0; font-size: 14px; opacity: 0.9; color: #e5e5e5;}
+.skill:hover { background: #6366F1; color: #fff; border-color: #6366F1; transform: scale(1.05); }
 
-/* PROFIT BOXES */
-.profit-section{
-  padding:100px 0;
-  background:#111827;
-  color: #fff;
+/* Profit Dark Section - Contrast Fix */
+.profit-section { 
+  padding: 120px 0; 
+  background: rgba(15, 23, 42, 0.95); /* Slightly transparent dark */
+  color: #fff; 
+  position: relative; 
+  backdrop-filter: blur(20px);
+  border-radius: 40px;
+  margin: 0 20px;
 }
-.profit-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:32px;
+.profit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.profit-box {
+  padding: 48px; border-radius: 24px;
+  background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px); transition: 0.3s;
 }
-.profit-box{
-  padding:40px;
-  border-radius:24px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
+.profit-box:hover { background: rgba(30, 41, 59, 0.9); transform: translateY(-5px); }
+.profit-list li { margin-bottom: 20px; font-size: 18px; color: #cbd5e1; display: flex; align-items: center; gap: 12px; }
+
+/* Form Center */
+#contact { text-align: center; }
+.contact-box {
+  max-width: 600px; padding: 48px; border-radius: 32px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+  width: 100%; margin: 0 auto; text-align: left;
+}
+input, textarea {
+  width: 100%; padding: 18px; border-radius: 14px;
+  border: 2px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.6);
+  margin-top: 10px; font-size: 16px; font-family: inherit; font-weight: 500;
   transition: 0.3s;
 }
-.profit-box:hover { background: rgba(255,255,255,0.05); }
-.profit-title{
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-.profit-title.red{ background: rgba(239,68,68,0.2); color: #FCA5A5; }
-.profit-title.green{ background: rgba(34,197,94,0.2); color: #86EFAC; }
+input:focus, textarea:focus { outline: none; border-color: #6366F1; background: #fff; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15); }
 
-.profit-list{ list-style:none; padding:0; }
-.profit-list li{
-  margin-bottom:18px;
-  font-size:16px;
-  color:#D1D5DB;
-  display: flex;
-  align-items: start;
-  gap: 10px;
+/* Animation Reveal */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* Mobile Fixes */
+@media(max-width: 900px) {
+  .header { margin: 0; top: 0; border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.5); }
+  .header-inner { padding: 0; }
+  .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding-top: 80px !important; }
+  .hero h1 { font-size: 40px; }
+  .nav-links { display: none; }
+  .services, .experience-grid, .gallery, .profit-grid { grid-template-columns: 1fr; gap: 20px; }
+  .contact-box { padding: 24px; }
+  .container, .hero, .section { padding-left: 20px !important; padding-right: 20px !important; }
+  
+  /* Blobs adjustment for mobile */
+  .blob { width: 80vw; height: 80vw; opacity: 0.6; }
 }
 
-/* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-  align-items: start; 
-}
-.media{
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  height: auto;
-  background: #000;
-  position: relative;
-  transition: 0.3s;
-}
-.media:hover { transform: scale(1.02); }
-
-.media img, 
-.media video{ 
-  width:100%; 
-  height: auto; 
-  display: block;
-}
-
-/* FORM - CENTERED FIX */
-.contact-box{
-  max-width:600px;
-  padding:40px;
-  border-radius:24px;
-  background:#fff;
-  border:1px solid var(--border);
-  box-shadow: var(--shadow-hover);
-  width: 100%;
-  margin: 0 auto; /* Ye line box ko center karegi */
-  text-align: left; /* Ander ka text left align rahega taaki form sundar dikhe */
-}
-
-/* Contact Section specific center alignment for Title */
-#contact {
-  text-align: center;
-}
-
-input,textarea{
-  width:100%;
-  padding:16px;
-  border-radius:12px;
-  border:1px solid #E5E7EB;
-  margin-top:12px;
-  font-size:15px;
-  background: #F9FAFB;
-  font-family: inherit;
-  transition: 0.3s;
-}
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-}
-
-/* INSTAGRAM LINK */
+/* Instagram Pulse */
 @keyframes insta-pulse {
   0% { transform: scale(1); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
-  50% { transform: scale(1.04); box-shadow: 0 8px 18px rgba(220, 39, 67, 0.4); }
+  50% { transform: scale(1.04); box-shadow: 0 10px 25px rgba(220, 39, 67, 0.4); }
   100% { transform: scale(1); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
 }
-
-.instagram-link {
-  display: block;
-  text-align: center;
-  margin-top: 24px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-muted);
-}
+.instagram-link { display: block; text-align: center; margin-top: 32px; font-weight: 600; color: #64748b; }
 .instagram-link a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 8px;
-  padding: 10px 24px;
-  border-radius: 50px;
-  color: white;
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  display: inline-flex; align-items: center; gap: 10px; margin-left: 10px;
+  padding: 12px 30px; border-radius: 50px; color: white;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  text-decoration: none; font-weight: 700; transition: all 0.3s ease;
   animation: insta-pulse 2.5s infinite ease-in-out;
 }
-.instagram-link a:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.1);
-  animation: none;
-}
+.instagram-link a:hover { transform: translateY(-3px); filter: brightness(1.1); animation: none; }
 
-/* FOOTER */
-footer{
-  padding:60px 24px;
-  text-align:center;
-  color:var(--text-muted);
-  font-size:14px;
-  border-top: 1px solid var(--border);
-  background: #fff;
-}
+/* Logos */
+.brand-section { text-align: center; padding: 60px 24px; }
+.brand-label { font-size: 12px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; display: block; }
+.logo-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; opacity: 0.6; }
+.logo-item { height: 32px; filter: grayscale(1); transition: 0.4s; cursor: pointer; }
+.logo-item:hover { filter: grayscale(0); transform: translateY(-3px); opacity: 1; }
 
-/* MOBILE FIXES */
-@media(max-width:900px){
-  .container, .hero, .section, .profit-section .container {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-  
-  .hero {
-    padding-top: 80px !important;
-    padding-bottom: 40px !important;
-  }
-  .section {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
+/* Gallery */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+.media { border-radius: 20px; overflow: hidden; background: #000; transition: 0.4s; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+.media:hover { transform: scale(1.03); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); }
+.media img, .media video { width: 100%; display: block; }
 
-  .hero{
-    grid-template-columns:1fr; 
-    text-align:center; 
-    gap: 30px;
-  }
-  .hero h1{font-size: 32px; word-wrap: break-word;} 
-  .hero p {margin: 0 auto 20px; font-size: 16px;}
-  
-  .nav-links { display: none; }
-  
-  .services,
-  .experience-grid,
-  .gallery,
-  .profit-grid{
-    grid-template-columns:1fr;
-    gap: 20px;
-  }
-  
-  .contact-box {
-    padding: 24px;
-  }
-  .profit-box {
-    padding: 24px;
-  }
-}
+footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); }
 </style>
 </head>
 
 <body>
+
+<div class="ambient-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+<div class="noise-overlay"></div>
 
 <header class="header">
   <div class="container header-inner">
@@ -486,7 +332,7 @@ footer{
         <a href="#skills">Skills</a>
         <a href="#experience">Results</a>
       </div>
-      <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
+      <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit</a>
     </nav>
   </div>
 </header>
@@ -496,11 +342,11 @@ footer{
     <div class="trust-badge">
        ✨ Founder-Led Growth Specialist
     </div>
-    <h1>Scale your DTC Brand with<br> <span style="color:var(--primary)">Profit-First Systems</span></h1>
+    <h1>Scale your DTC Brand with <br> <span class="gradient-text">Profit-First Systems</span></h1>
     <p>
       I align Meta & Google Ads with creative strategy and real business metrics. No vanity metrics, just profitable scaling.
     </p>
-    <div style="margin-top:24px">
+    <div style="margin-top:32px">
       <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
     </div>
   </div>
@@ -525,25 +371,20 @@ footer{
 
 <section id="about" class="section container">
   <h2>About Me</h2>
-
-  <p>
-    I’m <strong>Pritam</strong>, a performance marketer working with
-    <strong>founder-led DTC brands</strong> that want profitable, controlled growth.
-  </p>
-
-  <p>
-    I manage Meta & Google Ads, but my real work is aligning paid media with
-    <strong>margins, AOV, creatives, and cash flow</strong> — so scaling doesn’t break the business.
-  </p>
-
-  <p>
-    I’ve managed <strong>₹30L+ in monthly ad spend</strong> and helped brands grow.
-    I don’t chase vanity ROAS. I build <strong>profit-first systems</strong> founders can scale with clarity and confidence.
-  </p>
-
-  <p>
-    I work best with founders doing <strong>₹7L+/month or more</strong>, who want honest thinking and sustainable growth.
-  </p>
+  <div style="max-width: 800px;">
+    <p style="font-size: 18px; color: var(--text-muted);">
+      I’m <strong style="color: var(--text-main);">Pritam</strong>, a performance marketer working with
+      <strong>founder-led DTC brands</strong> that want profitable, controlled growth.
+    </p>
+    <p style="font-size: 18px; color: var(--text-muted);">
+      I manage Meta & Google Ads, but my real work is aligning paid media with
+      <strong>margins, AOV, creatives, and cash flow</strong> — so scaling doesn’t break the business.
+    </p>
+    <p style="font-size: 18px; color: var(--text-muted);">
+      I’ve managed <strong style="color: var(--text-main);">₹30L+ in monthly ad spend</strong> and helped brands grow.
+      I don’t chase vanity ROAS. I build <strong>profit-first systems</strong> founders can scale with clarity and confidence.
+    </p>
+  </div>
 </section>
 
 
@@ -610,18 +451,18 @@ footer{
 
 <section class="profit-section">
   <div class="container reveal">
-    <h2 style="color:#fff; margin-bottom:40px">The Difference</h2>
+    <h2 style="color:#fff; margin-bottom:50px">The Difference</h2>
     <div class="profit-grid">
       <div class="profit-box">
-        <div class="profit-title red">THE OLD WAY</div>
+        <div class="profit-title red" style="background: rgba(239,68,68,0.2); color: #FCA5A5;">THE OLD WAY</div>
         <ul class="profit-list">
           <li>✕ ROAS looks good, bank account empty</li>
           <li>✕ Revenue spikes followed by crashes</li>
           <li>✕ "Set and forget" mentality</li>
         </ul>
       </div>
-      <div class="profit-box" style="border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05);">
-        <div class="profit-title green">MY SYSTEM</div>
+      <div class="profit-box" style="border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.1);">
+        <div class="profit-title green" style="background: rgba(34,197,94,0.2); color: #86EFAC;">MY SYSTEM</div>
         <ul class="profit-list">
           <li>✔ Profit built into the media buying model</li>
           <li>✔ Compounding scale without operational burn</li>
@@ -633,8 +474,8 @@ footer{
 </section>
 
 <section id="creative" class="section container">
-  <h2 class="reveal">Performance Creatives I Guided Recnt</h2>
-  <p style="color:var(--text-muted); margin-bottom:30px" class="reveal">Data-backed creative testing strategy.</p>
+  <h2 class="reveal">Performance Creatives</h2>
+  <p style="color:var(--text-muted); margin-bottom:40px; font-size: 18px;" class="reveal">Data-backed creative testing strategy.</p>
   <div class="gallery">
     <div class="media reveal"><img src="images/static1.jpg"></div>
     <div class="media reveal"><img src="images/static2.jpg"></div>
@@ -650,16 +491,16 @@ footer{
   <h2>Let's Talk Growth</h2>
   <div class="contact-box">
     <form onsubmit="event.preventDefault();alert('Thanks! I will contact you shortly.');">
-      <label style="font-size:14px;font-weight:600;margin-left:4px;">Name</label>
+      <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
       <input placeholder="Ex. Rahul Sharma" required>
       
-      <label style="font-size:14px;font-weight:600;margin-left:4px;display:block;margin-top:16px">Contact</label>
+      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Contact</label>
       <input placeholder="Email or WhatsApp Number" required>
       
-      <label style="font-size:14px;font-weight:600;margin-left:4px;display:block;margin-top:16px">Challenge</label>
+      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Challenge</label>
       <textarea rows="4" placeholder="What's stopping you from scaling right now?"></textarea>
       
-      <div style="margin-top:24px">
+      <div style="margin-top:32px">
         <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
       </div>
     </form>
