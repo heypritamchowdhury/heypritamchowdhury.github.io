@@ -130,19 +130,18 @@ a{text-decoration:none;color:inherit;transition:0.3s}
   margin-bottom: 20px;
 }
 
-/* --- UPDATE: Hero Image Natural Fit --- */
+/* --- Hero Image Natural Fit --- */
 .photo-card{
   border-radius:24px;
   overflow:hidden;
   position: relative;
   box-shadow: var(--shadow-hover);
   background: #f3f4f6;
-  /* Height ko auto kar diya taaki image original ratio me dikhe */
   height: auto; 
 }
 .photo-card img{
   width:100%;
-  height: auto; /* Original Aspect Ratio maintain rahega */
+  height: auto; 
   display:block;
   transition:transform 0.6s;
 }
@@ -174,10 +173,10 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 }
 /* Logos Natural Fit */
 .logo-item {
-  height: 32px; /* Height fix rakhi hai taaki grid neat lage */
+  height: 32px; 
   width: auto;
   max-width: 150px;
-  object-fit: contain; /* Logo katega nahi, pura dikhega */
+  object-fit: contain; 
   filter: grayscale(none);
   transition: 0.4s;
   cursor: pointer;
@@ -261,7 +260,7 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 .exp-bg{
   position:absolute;
   inset:0;
-  background-size:cover; /* Background hamesha pura area cover karega */
+  background-size:cover; 
   background-position:center;
   opacity: 0.7;
   transition:0.6s;
@@ -319,18 +318,17 @@ a{text-decoration:none;color:inherit;transition:0.3s}
   gap: 10px;
 }
 
-/* --- UPDATE: GALLERY Natural Fit --- */
+/* --- GALLERY Natural Fit --- */
 .gallery{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:24px;
-  align-items: start; /* Columns upar se start honge */
+  align-items: start; 
 }
 .media{
   border-radius:16px;
   overflow:hidden;
   border:1px solid var(--border);
-  /* Aspect Ratio Hata diya, ab original shape rahega */
   height: auto;
   background: #000;
   position: relative;
@@ -338,15 +336,14 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 }
 .media:hover { transform: scale(1.02); }
 
-/* Image aur Video ko 'cover' se hata kar 'block' kar diya */
 .media img, 
 .media video{ 
   width:100%; 
-  height: auto; /* Natural Height - No Cropping */
+  height: auto; 
   display: block;
 }
 
-/* FORM & WHATSAPP */
+/* FORM */
 .contact-box{
   max-width:600px;
   padding:40px;
@@ -372,22 +369,45 @@ input:focus, textarea:focus {
   background: #fff;
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
-.whatsapp-link {
+
+/* --- NEW: ANIMATED INSTAGRAM LINK CSS --- */
+@keyframes insta-pulse {
+  0% { transform: scale(1); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
+  50% { transform: scale(1.04); box-shadow: 0 8px 18px rgba(220, 39, 67, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
+}
+
+.instagram-link {
   display: block;
   text-align: center;
-  margin-top: 18px;
+  margin-top: 24px;
   font-size: 15px;
   font-weight: 600;
   color: var(--text-muted);
 }
-.whatsapp-link a {
-  color: var(--whatsapp);
+
+/* Instagram Styled Button */
+.instagram-link a {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  margin-left: 8px;
+  padding: 10px 24px;
+  border-radius: 50px;
+  color: white;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  
+  /* Animation Apply kar di hai */
+  animation: insta-pulse 2.5s infinite ease-in-out;
 }
-.whatsapp-link a:hover {
-  text-decoration: underline;
+
+.instagram-link a:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  animation: none; /* Hover karne par pulse ruk jayega */
 }
 
 /* FOOTER */
