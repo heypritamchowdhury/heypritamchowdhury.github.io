@@ -9,12 +9,13 @@
 
 <style>
 :root{
-  --bg-body: #FAFAFA; /* Thoda soft white */
+  --bg-body: #FAFAFA;
   --bg-card: #FFFFFF;
   --text-main: #111827;
   --text-muted: #6B7280;
-  --primary: #4F46E5; /* Modern Indigo */
+  --primary: #4F46E5;
   --primary-hover: #4338ca;
+  --whatsapp: #25D366; /* WhatsApp Green */
   --border: #E5E7EB;
   --radius: 16px;
   --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
@@ -47,7 +48,7 @@ a{text-decoration:none;color:inherit;transition:0.3s}
   transform: translateY(0);
 }
 
-/* HEADER - Glassmorphism */
+/* HEADER */
 .header{
   position:sticky;
   top:0;
@@ -80,13 +81,15 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 /* Buttons */
 .cta-btn{
   padding:12px 24px;
-  border-radius:50px; /* Pill shape */
+  border-radius:50px;
   background:var(--primary);
   color:#fff;
   font-weight:600;
   font-size: 14px;
   box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
   transition: transform 0.2s, background 0.2s;
+  border: none;
+  cursor: pointer;
 }
 .cta-btn:hover{
   background:var(--primary-hover);
@@ -268,7 +271,7 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 /* PROFIT BOXES */
 .profit-section{
   padding:100px 0;
-  background:#111827; /* Dark elegant bg */
+  background:#111827;
   color: #fff;
 }
 .profit-grid{
@@ -322,7 +325,7 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 .media:hover { transform: scale(1.02); }
 .media img, .media video{ width:100%; height:100%; object-fit:cover; }
 
-/* FORM */
+/* FORM & WHATSAPP */
 .contact-box{
   max-width:600px;
   padding:40px;
@@ -348,6 +351,23 @@ input:focus, textarea:focus {
   background: #fff;
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
+.whatsapp-link {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.whatsapp-link a {
+  color: var(--whatsapp);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.whatsapp-link a:hover {
+  text-decoration: underline;
+}
 
 /* FOOTER */
 footer{
@@ -364,7 +384,7 @@ footer{
   .hero{grid-template-columns:1fr; text-align:center; gap: 30px;}
   .hero h1{font-size: 36px;}
   .hero p {margin: 0 auto 20px;}
-  .nav-links { display: none; } /* Hide menu links on mobile for simplicity */
+  .nav-links { display: none; }
   .services,.experience-grid,.gallery,.profit-grid{grid-template-columns:1fr}
 }
 </style>
@@ -381,7 +401,7 @@ footer{
         <a href="#skills">Skills</a>
         <a href="#experience">Results</a>
       </div>
-      <a href="#contact" class="cta-btn">Book Audit Call</a>
+      <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
     </nav>
   </div>
 </header>
@@ -396,7 +416,7 @@ footer{
       I align Meta & Google Ads with creative strategy and real business metrics. No vanity metrics, just profitable scaling.
     </p>
     <div style="margin-top:24px">
-      <a href="#contact" class="cta-btn">Book Free 15-Min Audit Call</a>
+      <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
     </div>
   </div>
 
@@ -436,7 +456,7 @@ footer{
     </div>
     <div class="service reveal">
       <h3>Creative Direction</h3>
-      <p>The biggest lever. I build hooks, angles, and briefs based on data, not just aesthetics.</p>
+      <p>Hooks, angles, briefs, and performance-led creative feedback.</p>
     </div>
     <div class="service reveal">
       <h3>Growth Strategy</h3>
@@ -449,10 +469,11 @@ footer{
   <h2>Core Capabilities</h2>
   <div class="skills-grid">
     <div class="skill">Meta Ads Expert</div>
-    <div class="skill">Google Shopping & Search</div>
+    <div class="skill">Google Shopping & Search Ads</div>
     <div class="skill">DTC Economics</div>
     <div class="skill">Creative Strategy</div>
-    <div class="skill">Direct Response Copy</div>
+    <div class="skill">Copywriting</div>
+    <div class="skill">AI & Prompt Engineering</div>
     <div class="skill">A/B Testing</div>
     <div class="skill">Data Analysis</div>
     <div class="skill">Conversion Optimization</div>
@@ -467,7 +488,7 @@ footer{
       <div class="exp-bg" style="background-image:url('images/exp1.png')"></div>
       <div class="exp-content">
         <h3>Jewelry Brand</h3>
-        <p>₹0 → ₹20L revenue in 5 months</p>
+        <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
       </div>
     </div>
     <div class="exp-card reveal">
@@ -518,6 +539,7 @@ footer{
     <div class="media reveal"><img src="images/static1.jpg"></div>
     <div class="media reveal"><img src="images/static2.jpg"></div>
     <div class="media reveal"><img src="images/static3.jpg"></div>
+    
     <div class="media reveal"><video src="videos/video1.mp4" autoplay muted loop></video></div>
     <div class="media reveal"><video src="videos/video2.mp4" autoplay muted loop></video></div>
     <div class="media reveal"><video src="videos/video3.mp4" autoplay muted loop></video></div>
@@ -538,9 +560,13 @@ footer{
       <textarea rows="4" placeholder="What's stopping you from scaling right now?"></textarea>
       
       <div style="margin-top:24px">
-        <button class="cta-btn" style="width:100%" type="submit">Book Free 15-Min Audit Call</button>
+        <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
       </div>
     </form>
+    
+    <div class="whatsapp-link">
+      Or <a href="https://wa.me/910000000000">DM me on WhatsApp</a>
+    </div>
   </div>
 </section>
 
@@ -551,11 +577,7 @@ footer{
 </footer>
 
 <script>
-  // Simple Intersection Observer for Scroll Animations
-  const observerOptions = {
-    threshold: 0.1
-  };
-
+  const observerOptions = { threshold: 0.1 };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
