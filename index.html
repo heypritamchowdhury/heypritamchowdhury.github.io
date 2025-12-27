@@ -63,7 +63,7 @@ a{text-decoration:none;color:inherit}
   display:grid;
   grid-template-columns:1fr 360px;
   gap:36px;
-  padding:90px 0;
+  padding:90px 0 50px 0; /* Adjusted padding */
 }
 .hero h1{font-size:40px;line-height:1.05}
 .hero p{
@@ -88,6 +88,41 @@ a{text-decoration:none;color:inherit}
   transition:.4s;
 }
 .photo-card:hover img{transform:scale(1.04)}
+
+/* NEW: LOGO SECTION STYLES */
+.brand-section {
+  text-align: center;
+  padding-bottom: 60px;
+  border-bottom: 1px solid #f8fafc;
+}
+.brand-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+  display: block;
+}
+.logo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* Space between logos */
+}
+/* Placeholder Logo Styles - Replace nicely with real images */
+.logo-item {
+  height: 35px; /* Fixed height for consistency */
+  width: auto;
+  opacity: 0.5;
+  filter: grayscale(100%);
+  transition: 0.3s;
+}
+.logo-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
 
 /* SECTION */
 .section{
@@ -305,7 +340,19 @@ footer{
   </div>
 </section>
 
-<!-- ABOUT -->
+<section class="container brand-section">
+  <span class="brand-label">Trusted by 7+ High-Growth Brands</span>
+  <div class="logo-grid">
+    <img class="logo-item" src="logos/brand1.png" alt="Brand 1">
+    <img class="logo-item" src="logos/brand2.png" alt="Brand 2">
+    <img class="logo-item" src="logos/brand3.png" alt="Brand 3">
+    <img class="logo-item" src="logos/brand4.png" alt="Brand 4">
+    <img class="logo-item" src="logos/brand5.png" alt="Brand 5">
+    <img class="logo-item" src="logos/brand6.png" alt="Brand 6">
+    <img class="logo-item" src="logos/brand7.png" alt="Brand 7">
+  </div>
+</section>
+
 <section class="section container">
   <h2>About Me</h2>
   <p style="max-width:780px;color:var(--muted);font-size:17px;line-height:1.7">
@@ -321,7 +368,6 @@ footer{
   </p>
 </section>
 
-<!-- SERVICES -->
 <section id="services" class="section container">
   <h2>What I Do</h2>
   <div class="services">
@@ -340,7 +386,6 @@ footer{
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills" class="section container">
   <h2>Skills & Capabilities</h2>
   <div class="skills-grid">
@@ -359,7 +404,6 @@ footer{
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience" class="section container">
   <h2>Experience & Results</h2>
   <div class="experience-grid">
@@ -387,7 +431,6 @@ footer{
   </div>
 </section>
 
-<!-- PROFIT FIRST -->
 <section class="profit-section">
   <div class="container">
     <div class="profit-grid">
@@ -411,7 +454,6 @@ footer{
   </div>
 </section>
 
-<!-- CREATIVES -->
 <section id="creative" class="section container">
   <h2>Creative Work</h2>
   <p style="color:var(--muted)">3 Static + 3 Video creatives guided by performance data</p>
@@ -425,7 +467,6 @@ footer{
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section container">
   <h2>Book Free 15-Min Audit Call</h2>
   <div class="contact-box">
