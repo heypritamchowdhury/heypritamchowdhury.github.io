@@ -233,40 +233,36 @@ a{text-decoration:none;color:inherit;transition:0.3s}
 }
 
 /* EXPERIENCE */
-.experience-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.exp-card{
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  height:360px;
-  background:#000;
-  display: flex;
-  align-items: flex-end;
-  transition: 0.4s;
-}
-.exp-bg{
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  opacity: 0.7;
-  transition:0.6s;
-}
-.exp-card:hover .exp-bg{transform:scale(1.1); opacity: 0.5;}
-.exp-content{
-  position:relative;
-  z-index:2;
-  padding:24px;
-  width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-  color: #fff;
-}
-.exp-content h3{ margin: 0 0 6px; font-size: 18px;}
-.exp-content p{ margin: 0; font-size: 14px; opacity: 0.9; color: #e5e5e5;}
+  <section id="experience" class="section container">
+  <h2 class="reveal">Recent Wins</h2>
+  <div class="experience-grid">
+    
+    <div class="exp-card reveal">
+      <div class="exp-bg" style="background-image:url('images/exp1.jpg')"></div>
+      <div class="exp-content">
+        <h3>Jewelry Brand</h3>
+        <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
+      </div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-bg" style="background-image:url('images/exp2.png')"></div>
+      <div class="exp-content">
+        <h3>Fashion Label</h3>
+        <p>Scaled to ₹60L revenue in 1 month</p>
+      </div>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-bg" style="background-image:url('images/exp3.jpg')"></div>
+      <div class="exp-content">
+        <h3>High-Volume Account</h3>
+        <p>Managed ₹30L monthly ad spend</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 /* PROFIT BOXES */
 .profit-section{
