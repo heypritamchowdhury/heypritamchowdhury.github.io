@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>Pritam — Performance Marketer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,23 +17,29 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-body {
+/* FIX 1: STRICT SCROLL LOCK */
+html, body {
   margin: 0;
+  padding: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: var(--text-main);
   background: transparent;
   line-height: 1.6;
-  overflow-x: hidden;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; /* Ye side scrolling rokega */
+  position: relative;
 }
 
 /* --- 1. LIVE ANIMATED WALLPAPER --- */
 .ambient-bg {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  inset: 0; /* Ensures full cover */
+  width: 100%;
+  height: 100%;
   background: #F1F5F9;
   z-index: -5;
-  overflow: hidden;
+  overflow: hidden; /* Blobs bahar nahi jayenge */
 }
 
 .blob {
@@ -81,16 +87,25 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* --- GLASS CONTAINER --- */
+/* --- CONTAINER --- */
 .container {
-  max-width: 1100px; margin: 0 auto; width: 100%; padding: 0 24px; position: relative; z-index: 2;
+  max-width: 1100px; 
+  margin: 0 auto; 
+  width: 100%; 
+  padding: 0 24px; 
+  position: relative; 
+  z-index: 2;
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-/* --- HEADER GLASS --- */
+/* --- HEADER --- */
 .header {
-  position: sticky; top: 20px; margin: 0 20px;
+  position: sticky; top: 20px; 
+  /* Left/Right auto margin ensures center alignment if width < 100% */
+  margin: 0 auto;
+  max-width: 1100px;
+  width: calc(100% - 40px); /* Mobile padding included */
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -105,7 +120,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .nav a:hover { color: #6366F1; }
 .nav-links { display: flex; gap: 24px; }
 
-/* --- MODERN BUTTON --- */
+/* --- BUTTON --- */
 .cta-btn {
   padding: 14px 32px; border-radius: 50px; background: var(--primary-gradient);
   color: #fff; font-weight: 700; font-size: 15px;
@@ -144,7 +159,30 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .section { padding: 120px 24px; }
 .section h2 { font-size: 42px; letter-spacing: -1.5px; margin-bottom: 50px; font-weight: 800; color: #1e293b; }
 
-/* Services Glass Cards */
+/* --- FIX 2: BRAND SECTION CENTERED --- */
+.brand-section {
+  text-align: center;
+  padding: 50px 24px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.5);
+  
+  /* Centering Fix */
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: auto;  /* Auto ensures center */
+  margin-right: auto; /* Auto ensures center */
+  width: 100%;
+}
+.brand-label { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: block; }
+.logo-grid {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; opacity: 0.9;
+}
+.logo-item { height: 32px; filter: grayscale(1); transition: 0.4s; cursor: pointer; }
+.logo-item:hover { filter: grayscale(0); transform: translateY(-3px); opacity: 1; }
+
+/* Services */
 .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .service {
   padding: 40px 32px; border-radius: 24px;
@@ -168,10 +206,29 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 .skill:hover { background: #6366F1; color: #fff; border-color: #6366F1; transform: scale(1.05); }
 
-/* Profit Dark Section */
+/* Experience */
+.experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.exp-card {
+  position: relative; overflow: hidden; border-radius: 20px; height: 360px;
+  background: #000; display: flex; align-items: flex-end; transition: 0.4s;
+}
+.exp-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  opacity: 0.7; transition: 0.6s;
+}
+.exp-card:hover .exp-bg { transform: scale(1.1); opacity: 0.5; }
+.exp-content {
+  position: relative; z-index: 2; padding: 24px; width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff;
+}
+.exp-content h3{ margin: 0 0 6px; font-size: 18px;}
+.exp-content p{ margin: 0; font-size: 14px; opacity: 0.9; color: #e5e5e5;}
+
+/* Profit */
 .profit-section { 
   padding: 120px 0; background: rgba(15, 23, 42, 0.95); color: #fff; 
-  position: relative; backdrop-filter: blur(20px); border-radius: 40px; margin: 0 20px;
+  position: relative; backdrop-filter: blur(20px); border-radius: 40px; 
+  margin: 0 auto; width: 100%;
 }
 .profit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .profit-box {
@@ -180,9 +237,11 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   backdrop-filter: blur(10px); transition: 0.3s;
 }
 .profit-box:hover { background: rgba(30, 41, 59, 0.9); transform: translateY(-5px); }
+.profit-title { font-size: 14px; font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; display: inline-block; padding: 6px 12px; border-radius: 6px; }
+.profit-list{ list-style:none; padding:0; }
 .profit-list li { margin-bottom: 20px; font-size: 18px; color: #cbd5e1; display: flex; align-items: center; gap: 12px; }
 
-/* Form Center */
+/* Contact Form */
 #contact { text-align: center; }
 .contact-box {
   max-width: 600px; padding: 48px; border-radius: 32px;
@@ -204,16 +263,16 @@ input:focus, textarea:focus { outline: none; border-color: #6366F1; background: 
 
 /* Mobile Fixes */
 @media(max-width: 900px) {
-  .header { margin: 0; top: 0; border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.5); }
-  .header-inner { padding: 0; }
+  .header { margin: 0; top: 0; border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.5); width: 100%; }
+  .header-inner { padding: 0 20px; }
   .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding-top: 80px !important; }
   .hero h1 { font-size: 40px; }
   .nav-links { display: none; }
   .services, .experience-grid, .gallery, .profit-grid { grid-template-columns: 1fr; gap: 20px; }
   .contact-box { padding: 24px; }
-  .container, .hero, .section { padding-left: 20px !important; padding-right: 20px !important; }
-  .blob { width: 80vw; height: 80vw; opacity: 0.6; }
-  .brand-section { margin: 40px 0; border-radius: 0; } /* Mobile brand section adjustment */
+  /* Ensure NO side scrolling */
+  .container, .hero, .section { padding-left: 20px !important; padding-right: 20px !important; width: 100% !important; overflow-x: hidden; }
+  .brand-section { width: 100% !important; margin: 40px 0; border-radius: 16px; }
 }
 
 /* Instagram Pulse */
@@ -231,26 +290,6 @@ input:focus, textarea:focus { outline: none; border-color: #6366F1; background: 
   animation: insta-pulse 2.5s infinite ease-in-out;
 }
 .instagram-link a:hover { transform: translateY(-3px); filter: brightness(1.1); animation: none; }
-
-/* --- LOGO FIXES (Visibility Improved) --- */
-.brand-section {
-  text-align: center;
-  padding: 50px 24px;
-  /* Added subtle glass background to make logos pop */
-  background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  margin: 40px 20px;
-  border: 1px solid rgba(255,255,255,0.5);
-}
-.brand-label { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: block; }
-.logo-grid {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 40px;
-  /* Opacity increased from 0.6 to 0.9 for better visibility */
-  opacity: 0.9;
-}
-.logo-item { height: 32px; filter: grayscale(1); transition: 0.4s; cursor: pointer; }
-.logo-item:hover { filter: grayscale(0); transform: translateY(-3px); opacity: 1; }
 
 /* Gallery */
 .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
@@ -272,7 +311,7 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
 <div class="noise-overlay"></div>
 
 <header class="header">
-  <div class="container header-inner">
+  <div class="header-inner">
     <div class="brand">Pritam.</div>
     <nav class="nav">
       <div class="nav-links">
@@ -412,9 +451,9 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
       <div class="profit-box" style="border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.1);">
         <div class="profit-title green" style="background: rgba(34,197,94,0.2); color: #86EFAC;">MY SYSTEM</div>
         <ul class="profit-list">
-          <li>✔ Profit built into the media buying model</li>
-          <li>✔ Compounding scale without operational burn</li>
-          <li>✔ Daily optimization & creative refresh</li>
+          <li>✅ Profit built into the Media Buying Model</li>
+          <li>✅ Compounding scale without operational burn</li>
+          <li>✅ Daily optimization & Creative refresh</li>
         </ul>
       </div>
     </div>
@@ -422,8 +461,8 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
 </section>
 
 <section id="creative" class="section container">
-  <h2 class="reveal">Performance Creatives</h2>
-  <p style="color:var(--text-muted); margin-bottom:40px; font-size: 18px;" class="reveal">Data-backed creative testing strategy.</p>
+  <h2 class="reveal">Performance Creatives I Guided</h2>
+  <p style="color:var(--text-muted); margin-bottom:40px; font-size: 18px;" class="reveal">Data-backed Creative Testing Strategy.</p>
   <div class="gallery">
     <div class="media reveal"><img src="images/static1.jpg"></div>
     <div class="media reveal"><img src="images/static2.jpg"></div>
