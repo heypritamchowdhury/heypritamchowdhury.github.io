@@ -1,591 +1,1189 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8" />
+
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+
 <title>Pritam — Performance Marketer & Creative Strategist</title>
+
+
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
+
 <style>
+
 :root{
+
   --bg-body: #FAFAFA;
+
   --bg-card: #FFFFFF;
+
   --text-main: #111827;
+
   --text-muted: #6B7280;
+
   --primary: #4F46E5;
+
   --primary-hover: #4338ca;
+
   --whatsapp: #25D366; /* WhatsApp Green */
+
   --border: #E5E7EB;
+
   --radius: 16px;
+
   --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+
   --shadow-hover: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+
 }
+
+
 
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
 
+
+
 body{
+
   margin:0;
+
   font-family:'Inter', sans-serif;
+
   color:var(--text-main);
+
   background:var(--bg-body);
+
   line-height:1.6;
+
   -webkit-font-smoothing: antialiased;
+
 }
+
+
 
 a{text-decoration:none;color:inherit;transition:0.3s}
+
 .container{max-width:1100px;margin:0 auto;padding:0 24px}
 
+
+
 /* ANIMATIONS */
+
 .reveal {
+
   opacity: 0;
+
   transform: translateY(30px);
+
   transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+
 }
+
 .reveal.active {
+
   opacity: 1;
+
   transform: translateY(0);
+
 }
+
+
 
 /* HEADER */
+
 .header{
+
   position:sticky;
+
   top:0;
+
   background:rgba(255,255,255,0.85);
+
   backdrop-filter:blur(12px);
+
   border-bottom:1px solid rgba(0,0,0,0.05);
+
   z-index:100;
+
   padding:16px 0;
+
 }
+
 .header-inner{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
 }
+
 .brand{
+
   font-weight:700;
+
   font-size: 20px;
+
   color:var(--text-main);
+
   letter-spacing: -0.5px;
+
 }
+
 .nav{display:flex;gap:24px;align-items:center}
+
 .nav a{
+
   font-size:14px;
+
   color:var(--text-muted);
+
   font-weight:500;
+
 }
+
 .nav a:hover{color:var(--primary)}
+
 .nav-links { display: flex; gap: 20px; }
 
+
+
 /* Buttons */
+
 .cta-btn{
+
   padding:12px 24px;
+
   border-radius:50px;
+
   background:var(--primary);
+
   color:#fff;
+
   font-weight:600;
+
   font-size: 14px;
+
   box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+
   transition: transform 0.2s, background 0.2s;
+
   border: none;
+
   cursor: pointer;
+
 }
+
 .cta-btn:hover{
+
   background:var(--primary-hover);
+
   transform:translateY(-1px);
+
 }
+
+
 
 /* HERO */
+
 .hero{
+
   display:grid;
+
   grid-template-columns:1fr 400px;
+
   gap:48px;
+
   padding:100px 0 60px;
+
   align-items: center;
+
 }
+
 .hero h1{
+
   font-size:48px;
+
   line-height:1.1;
+
   letter-spacing: -1.5px;
+
   margin-bottom: 20px;
+
   color: var(--text-main);
+
 }
+
 .hero p{
+
   color:var(--text-muted);
+
   font-size:18px;
+
   margin-bottom: 24px;
+
   max-width:90%;
+
 }
+
 .trust-badge{
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
+
   padding: 6px 12px;
+
   background: #EEF2FF;
+
   color: var(--primary);
+
   border-radius: 8px;
+
   font-size: 13px;
+
   font-weight: 600;
+
   margin-bottom: 20px;
+
 }
+
 .photo-card{
+
   border-radius:24px;
+
   overflow:hidden;
+
   position: relative;
+
   box-shadow: var(--shadow-hover);
+
 }
+
 .photo-card img{
+
   width:100%;
+
   display:block;
+
   transition:transform 0.6s;
+
 }
+
 .photo-card:hover img{transform:scale(1.05)}
 
+
+
 /* LOGOS */
+
 .brand-section {
+
   text-align: center;
+
   padding: 60px 0;
+
   border-bottom: 1px solid var(--border);
+
 }
+
 .brand-label {
+
   font-size: 12px;
+
   font-weight: 600;
+
   color: var(--text-muted);
+
   text-transform: uppercase;
+
   letter-spacing: 1.5px;
+
   margin-bottom: 30px;
+
   display: block;
+
   opacity: 0.7;
+
 }
+
 .logo-grid {
+
   display: flex;
+
   flex-wrap: wrap;
+
   justify-content: center;
+
   gap: 48px;
+
   opacity: 0.6;
+
 }
+
 .logo-item {
+
   height: 32px;
+
   width: auto;
+
   filter: grayscale(100%);
+
   transition: 0.4s;
+
   cursor: pointer;
+
 }
+
 .logo-item:hover {
+
   filter: grayscale(0%);
+
   opacity: 1;
+
   transform: translateY(-2px);
+
 }
+
+
 
 /* SECTIONS General */
+
 .section{padding:100px 0}
+
 .section h2{
+
   font-size: 32px;
+
   letter-spacing: -1px;
+
   margin-bottom: 40px;
+
 }
+
+
 
 /* SERVICES */
+
 .services{
+
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:24px;
+
 }
+
 .service{
+
   padding:32px;
+
   border-radius:var(--radius);
+
   background:var(--bg-card);
+
   border:1px solid var(--border);
+
   transition:0.4s;
+
 }
+
 .service:hover{
+
   transform:translateY(-8px);
+
   box-shadow:var(--shadow-hover);
+
   border-color: rgba(79, 70, 229, 0.3);
+
 }
+
 .service h3{
+
   margin:0 0 12px;
+
   font-size: 20px;
+
 }
+
 .service p { margin: 0; color: var(--text-muted); font-size: 15px; }
 
+
+
 /* SKILLS */
+
 .skills-grid{
+
   display:flex;
+
   flex-wrap: wrap;
+
   gap:12px;
+
 }
+
 .skill{
+
   padding:10px 18px;
+
   border-radius:100px;
+
   background:#fff;
+
   border:1px solid var(--border);
+
   font-size:14px;
+
   font-weight:500;
+
   color: var(--text-main);
+
   transition:0.3s;
+
 }
+
 .skill:hover{
+
   border-color:var(--primary);
+
   color: var(--primary);
+
   background: #EEF2FF;
+
 }
+
+
 
 /* EXPERIENCE */
-  <section id="experience" class="section container">
-  <h2 class="reveal">Recent Wins</h2>
-  <div class="experience-grid">
-    
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp1.jpg')"></div>
-      <div class="exp-content">
-        <h3>Jewelry Brand</h3>
-        <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
-      </div>
-    </div>
 
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp2.png')"></div>
-      <div class="exp-content">
-        <h3>Fashion Label</h3>
-        <p>Scaled to ₹60L revenue in 1 month</p>
-      </div>
-    </div>
+.experience-grid{
 
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp3.jpg')"></div>
-      <div class="exp-content">
-        <h3>High-Volume Account</h3>
-        <p>Managed ₹30L monthly ad spend</p>
-      </div>
-    </div>
+  display:grid;
 
-  </div>
-</section>
+  grid-template-columns:repeat(3,1fr);
+
+  gap:24px;
+
+}
+
+.exp-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:20px;
+
+  height:360px;
+
+  background:#000;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  transition: 0.4s;
+
+}
+
+.exp-bg{
+
+  position:absolute;
+
+  inset:0;
+
+  background-size:cover;
+
+  background-position:center;
+
+  opacity: 0.7;
+
+  transition:0.6s;
+
+}
+
+.exp-card:hover .exp-bg{transform:scale(1.1); opacity: 0.5;}
+
+.exp-content{
+
+  position:relative;
+
+  z-index:2;
+
+  padding:24px;
+
+  width: 100%;
+
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+
+  color: #fff;
+
+}
+
+.exp-content h3{ margin: 0 0 6px; font-size: 18px;}
+
+.exp-content p{ margin: 0; font-size: 14px; opacity: 0.9; color: #e5e5e5;}
+
+
 
 /* PROFIT BOXES */
+
 .profit-section{
+
   padding:100px 0;
+
   background:#111827;
+
   color: #fff;
+
 }
+
 .profit-grid{
+
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:32px;
+
 }
+
 .profit-box{
+
   padding:40px;
+
   border-radius:24px;
+
   background: rgba(255,255,255,0.03);
+
   border: 1px solid rgba(255,255,255,0.1);
+
   transition: 0.3s;
+
 }
+
 .profit-box:hover { background: rgba(255,255,255,0.05); }
+
 .profit-title{
+
   font-size: 14px;
+
   font-weight: 700;
+
   letter-spacing: 1px;
+
   margin-bottom: 24px;
+
   display: inline-block;
+
   padding: 6px 12px;
+
   border-radius: 6px;
+
 }
+
 .profit-title.red{ background: rgba(239,68,68,0.2); color: #FCA5A5; }
+
 .profit-title.green{ background: rgba(34,197,94,0.2); color: #86EFAC; }
 
+
+
 .profit-list{ list-style:none; padding:0; }
+
 .profit-list li{
+
   margin-bottom:18px;
+
   font-size:16px;
+
   color:#D1D5DB;
+
   display: flex;
+
   align-items: start;
+
   gap: 10px;
+
 }
+
+
 
 /* GALLERY */
+
 .gallery{
+
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:24px;
+
 }
+
 .media{
+
   border-radius:16px;
+
   overflow:hidden;
+
   border:1px solid var(--border);
+
   aspect-ratio: 4/5;
+
   transition: 0.3s;
+
 }
+
 .media:hover { transform: scale(1.02); }
+
 .media img, .media video{ width:100%; height:100%; object-fit:cover; }
 
+
+
 /* FORM & WHATSAPP */
+
 .contact-box{
+
   max-width:600px;
+
   padding:40px;
+
   border-radius:24px;
+
   background:#fff;
+
   border:1px solid var(--border);
+
   box-shadow: var(--shadow-hover);
+
 }
+
 input,textarea{
+
   width:100%;
+
   padding:16px;
+
   border-radius:12px;
+
   border:1px solid #E5E7EB;
+
   margin-top:12px;
+
   font-size:15px;
+
   background: #F9FAFB;
+
   font-family: inherit;
+
   transition: 0.3s;
+
 }
+
 input:focus, textarea:focus {
+
   outline: none;
+
   border-color: var(--primary);
+
   background: #fff;
+
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+
 }
+
 .whatsapp-link {
+
   display: block;
+
   text-align: center;
+
   margin-top: 18px;
+
   font-size: 15px;
+
   font-weight: 600;
+
   color: var(--text-muted);
+
 }
+
 .whatsapp-link a {
+
   color: var(--whatsapp);
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 6px;
+
 }
+
 .whatsapp-link a:hover {
+
   text-decoration: underline;
+
 }
+
+
 
 /* FOOTER */
+
 footer{
+
   padding:60px 0;
+
   text-align:center;
+
   color:var(--text-muted);
+
   font-size:14px;
+
   border-top: 1px solid var(--border);
+
   background: #fff;
+
 }
 
+
+
 /* MOBILE */
+
 @media(max-width:900px){
+
   .hero{grid-template-columns:1fr; text-align:center; gap: 30px;}
+
   .hero h1{font-size: 36px;}
+
   .hero p {margin: 0 auto 20px;}
+
   .nav-links { display: none; }
+
   .services,.experience-grid,.gallery,.profit-grid{grid-template-columns:1fr}
+
 }
+
 </style>
+
 </head>
+
+
 
 <body>
 
+
+
 <header class="header">
+
   <div class="container header-inner">
+
     <div class="brand">Pritam.</div>
+
     <nav class="nav">
+
       <div class="nav-links">
+
         <a href="#services">Services</a>
+
         <a href="#skills">Skills</a>
+
         <a href="#experience">Results</a>
+
       </div>
+
       <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
+
     </nav>
+
   </div>
+
 </header>
 
+
+
 <section class="container hero reveal">
+
   <div>
+
     <div class="trust-badge">
+
        ✨ Founder-Led Growth Specialist
+
     </div>
+
     <h1>Scale your DTC Brand with<br> <span style="color:var(--primary)">Profit-First Systems</span></h1>
+
     <p>
+
       I align Meta & Google Ads with creative strategy and real business metrics. No vanity metrics, just profitable scaling.
+
     </p>
+
     <div style="margin-top:24px">
+
       <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
+
     </div>
+
   </div>
+
+
 
   <div class="photo-card reveal">
+
     <img src="images/pritam.jpg" alt="Pritam">
+
   </div>
+
 </section>
+
+
 
 <section class="container brand-section reveal">
+
   <span class="brand-label">Trusted by 7+ High-Growth Brands</span>
+
   <div class="logo-grid">
+
     <img class="logo-item" src="logos/brand1.png" alt="Brand 1">
+
     <img class="logo-item" src="logos/brand2.png" alt="Brand 2">
+
     <img class="logo-item" src="logos/brand3.png" alt="Brand 3">
+
     <img class="logo-item" src="logos/brand4.png" alt="Brand 4">
+
     <img class="logo-item" src="logos/brand5.png" alt="Brand 5">
+
     <img class="logo-item" src="logos/brand6.png" alt="Brand 6">
+
     <img class="logo-item" src="logos/brand7.png" alt="Brand 7">
+
   </div>
+
 </section>
+
+
 
 <section class="section container reveal">
+
   <h2>The Philosophy</h2>
+
   <p style="max-width:700px;color:var(--text-muted);font-size:18px;">
+
     Most agencies chase ROAS. I chase <strong>Profit</strong>. <br><br>
+
     I’m Pritam, a creative strategist who understands that ads don't work in isolation. 
+
     To scale a founder-led brand, you need a system that connects ad spend, creative hooks, and unit economics.
+
   </p>
+
 </section>
+
+
 
 <section id="services" class="section container">
+
   <h2 class="reveal">What I Deliver</h2>
+
   <div class="services">
+
     <div class="service reveal">
+
       <h3>Paid Ads</h3>
+
       <p>Meta & Google Ads execution. Full-funnel setup, rigorous testing, and stability at scale.</p>
+
     </div>
+
     <div class="service reveal">
+
       <h3>Creative Direction</h3>
+
       <p>Hooks, angles, briefs, and performance-led creative feedback.</p>
+
     </div>
+
     <div class="service reveal">
+
       <h3>Growth Strategy</h3>
+
       <p>Consulting on offers, AOV, and margins to ensure every ad rupee brings back profit.</p>
+
     </div>
+
   </div>
+
 </section>
+
+
 
 <section id="skills" class="section container reveal">
+
   <h2>Core Capabilities</h2>
+
   <div class="skills-grid">
+
     <div class="skill">Meta Ads Expert</div>
+
     <div class="skill">Google Shopping & Search Ads</div>
+
     <div class="skill">DTC Economics</div>
+
     <div class="skill">Creative Strategy</div>
+
     <div class="skill">Copywriting</div>
+
     <div class="skill">AI & Prompt Engineering</div>
+
     <div class="skill">A/B Testing</div>
+
     <div class="skill">Data Analysis</div>
+
     <div class="skill">Conversion Optimization</div>
+
     <div class="skill">Shopify</div>
+
   </div>
+
 </section>
+
+
 
 <section id="experience" class="section container">
+
   <h2 class="reveal">Recent Wins</h2>
+
   <div class="experience-grid">
+
     <div class="exp-card reveal">
+
       <div class="exp-bg" style="background-image:url('images/exp1.png')"></div>
+
       <div class="exp-content">
+
         <h3>Jewelry Brand</h3>
+
         <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
+
       </div>
+
     </div>
+
     <div class="exp-card reveal">
+
       <div class="exp-bg" style="background-image:url('images/exp2.png')"></div>
+
       <div class="exp-content">
+
         <h3>Fashion Label</h3>
+
         <p>Scaled to ₹60L revenue in 1 month</p>
+
       </div>
+
     </div>
+
     <div class="exp-card reveal">
+
       <div class="exp-bg" style="background-image:url('images/exp3.png')"></div>
+
       <div class="exp-content">
+
         <h3>High-Volume Account</h3>
+
         <p>Managed ₹30L monthly ad spend</p>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
+
+
 
 <section class="profit-section">
+
   <div class="container reveal">
+
     <h2 style="color:#fff; margin-bottom:40px">The Difference</h2>
+
     <div class="profit-grid">
+
       <div class="profit-box">
+
         <div class="profit-title red">THE OLD WAY</div>
+
         <ul class="profit-list">
+
           <li>✕ ROAS looks good, bank account empty</li>
+
           <li>✕ Revenue spikes followed by crashes</li>
+
           <li>✕ "Set and forget" mentality</li>
+
         </ul>
+
       </div>
+
       <div class="profit-box" style="border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.05);">
+
         <div class="profit-title green">MY SYSTEM</div>
+
         <ul class="profit-list">
+
           <li>✔ Profit built into the media buying model</li>
+
           <li>✔ Compounding scale without operational burn</li>
+
           <li>✔ Daily optimization & creative refresh</li>
+
         </ul>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
+
+
 
 <section id="creative" class="section container">
+
   <h2 class="reveal">Performance Creatives</h2>
+
   <p style="color:var(--text-muted); margin-bottom:30px" class="reveal">Data-backed creative testing strategy.</p>
+
   <div class="gallery">
+
     <div class="media reveal"><img src="images/static1.jpg"></div>
+
     <div class="media reveal"><img src="images/static2.jpg"></div>
+
     <div class="media reveal"><img src="images/static3.jpg"></div>
+
     
+
     <div class="media reveal"><video src="videos/video1.mp4" autoplay muted loop></video></div>
+
     <div class="media reveal"><video src="videos/video2.mp4" autoplay muted loop></video></div>
+
     <div class="media reveal"><video src="videos/video3.mp4" autoplay muted loop></video></div>
+
   </div>
+
 </section>
+
+
 
 <section id="contact" class="section container reveal">
+
   <h2>Let's Talk Growth</h2>
+
   <div class="contact-box">
+
     <form onsubmit="event.preventDefault();alert('Thanks! I will contact you shortly.');">
+
       <label style="font-size:14px;font-weight:600;margin-left:4px;">Name</label>
+
       <input placeholder="Ex. Rahul Sharma" required>
+
       
+
       <label style="font-size:14px;font-weight:600;margin-left:4px;display:block;margin-top:16px">Contact</label>
+
       <input placeholder="Email or WhatsApp Number" required>
+
       
+
       <label style="font-size:14px;font-weight:600;margin-left:4px;display:block;margin-top:16px">Challenge</label>
+
       <textarea rows="4" placeholder="What's stopping you from scaling right now?"></textarea>
+
       
+
       <div style="margin-top:24px">
+
         <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
+
       </div>
+
     </form>
+
     
+
     <div class="whatsapp-link">
+
       Or <a href="https://wa.me/910000000000">DM me on WhatsApp</a>
+
     </div>
+
   </div>
+
 </section>
 
+
+
 <footer>
+
   <div class="container">
+
     <p>© 2025 Pritam • Performance Marketer</p>
+
   </div>
+
 </footer>
 
+
+
 <script>
+
   const observerOptions = { threshold: 0.1 };
+
   const observer = new IntersectionObserver((entries) => {
+
     entries.forEach(entry => {
+
       if (entry.isIntersecting) {
+
         entry.target.classList.add('active');
+
       }
+
     });
+
   }, observerOptions);
 
+
+
   document.querySelectorAll('.reveal').forEach(el => {
+
     observer.observe(el);
+
   });
+
 </script>
 
+
+
 </body>
+
 </html>
