@@ -485,20 +485,24 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
 <section id="contact" class="section container reveal">
   <h2>Let's Talk Growth</h2>
   <div class="contact-box">
-    <form onsubmit="event.preventDefault();alert('Thanks! I will contact you shortly.');">
-      <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
-      <input placeholder="Ex. Rahul Sharma" required>
-      
-      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Contact</label>
-      <input placeholder="Email or WhatsApp Number" required>
-      
-      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Challenge</label>
-      <textarea rows="4" placeholder="What's stopping you from scaling right now?"></textarea>
-      
-      <div style="margin-top:32px">
-        <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
-      </div>
-    </form>
+<form action="https://formsubmit.co/businesswithmrpipu@gmail.com" method="POST">
+  <input type="text" name="_honey" style="display:none">
+  
+  <input type="hidden" name="_captcha" value="false">
+
+  <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
+  <input type="text" name="name" placeholder="Ex. Rahul Sharma" required>
+  
+  <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Contact</label>
+  <input type="text" name="contact" placeholder="Email or WhatsApp Number" required>
+  
+  <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Challenge</label>
+  <textarea name="message" rows="4" placeholder="What's stopping you from scaling right now?" required></textarea>
+  
+  <div style="margin-top:32px">
+    <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
+  </div>
+</form>
     
     <div class="instagram-link">
       Or <a href="https://ig.me/m/mrpipu">Directly DM Me</a>
