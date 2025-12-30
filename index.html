@@ -167,7 +167,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .section { padding: 120px 24px; }
 .section h2 { font-size: 42px; letter-spacing: -1.5px; margin-bottom: 50px; font-weight: 800; color: #1e293b; }
 
-/* --- FIX 2: BRAND SECTION CENTERED --- */
+/* --- BRAND SECTION CENTERED --- */
 .brand-section {
   text-align: center;
   padding: 50px 24px;
@@ -175,12 +175,10 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   backdrop-filter: blur(10px);
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,0.5);
-  
-  /* Centering Fix */
   margin-top: 60px;
   margin-bottom: 60px;
-  margin-left: auto;  /* Auto ensures center */
-  margin-right: auto; /* Auto ensures center */
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
 }
 .brand-label { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: block; }
@@ -189,6 +187,63 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 .logo-item { height: 32px; filter: grayscale(1); transition: 0.4s; cursor: pointer; }
 .logo-item:hover { filter: grayscale(0); transform: translateY(-3px); opacity: 1; }
+
+/* --- TESTIMONIAL STYLE --- */
+.testimonial-section {
+  padding: 60px 24px;
+  text-align: center;
+}
+.testimonial-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+  position: relative;
+}
+.quote-icon {
+  font-size: 50px;
+  color: #6366F1;
+  opacity: 0.2;
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-family: serif;
+}
+.testimonial-stars {
+  margin-bottom: 16px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.testimonial-text {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #1E293B;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.author-info h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0F172A;
+}
+.author-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #6366F1;
+  font-weight: 600;
+}
 
 /* Services */
 .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -281,6 +336,8 @@ input:focus, textarea:focus { outline: none; border-color: #6366F1; background: 
   /* Ensure NO side scrolling */
   .container, .hero, .section { padding-left: 20px !important; padding-right: 20px !important; width: 100% !important; overflow-x: hidden; }
   .brand-section { width: 100% !important; margin: 40px 0; border-radius: 16px; }
+  .testimonial-text { font-size: 18px; }
+  .testimonial-card { padding: 30px; }
 }
 
 /* Instagram Pulse */
@@ -382,7 +439,23 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
   </div>
 </section>
 
-
+<section class="testimonial-section reveal">
+  <div class="container">
+    <div class="testimonial-card">
+      <div class="quote-icon">“</div>
+      <div class="testimonial-stars">⭐️⭐️⭐️⭐️⭐️</div>
+      <p class="testimonial-text">
+        Working with Pritam has been great. He understands marketing and business, not just ads, and his promise to manage only 2-3 clients at a time, his focused approach really helps brands grow.
+      </p>
+      <div class="testimonial-author">
+        <div class="author-info">
+          <h4>Founder</h4>
+          <p>NutroHealth</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="services" class="section container">
   <h2 class="reveal">What I Deliver</h2>
   <div class="services">
@@ -485,24 +558,24 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
 <section id="contact" class="section container reveal">
   <h2>Let's Talk Growth</h2>
   <div class="contact-box">
-<form action="https://formsubmit.co/businesswithmrpipu@gmail.com" method="POST">
-  <input type="text" name="_honey" style="display:none">
-  
-  <input type="hidden" name="_captcha" value="false">
+    <form action="https://formsubmit.co/businesswithmrpipu@gmail.com" method="POST">
+      <input type="text" name="_honey" style="display:none">
+      
+      <input type="hidden" name="_captcha" value="false">
 
-  <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
-  <input type="text" name="name" placeholder="Ex. Rahul Sharma" required>
-  
-  <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Contact</label>
-  <input type="text" name="contact" placeholder="Email or WhatsApp Number" required>
-  
-  <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Challenge</label>
-  <textarea name="message" rows="4" placeholder="What's stopping you from scaling right now?" required></textarea>
-  
-  <div style="margin-top:32px">
-    <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
-  </div>
-</form>
+      <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
+      <input type="text" name="name" placeholder="Ex. Rahul Sharma" required>
+      
+      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Contact</label>
+      <input type="text" name="contact" placeholder="Email or WhatsApp Number" required>
+      
+      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Challenge</label>
+      <textarea name="message" rows="4" placeholder="What's stopping you from scaling right now?" required></textarea>
+      
+      <div style="margin-top:32px">
+        <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
+      </div>
+    </form>
     
     <div class="instagram-link">
       Or <a href="https://ig.me/m/mrpipu">Directly DM Me</a>
