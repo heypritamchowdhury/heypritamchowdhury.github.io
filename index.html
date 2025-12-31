@@ -42,12 +42,12 @@ html, body {
 /* --- 1. LIVE ANIMATED WALLPAPER --- */
 .ambient-bg {
   position: fixed;
-  inset: 0; /* Ensures full cover */
+  inset: 0; 
   width: 100%;
   height: 100%;
   background: #F1F5F9;
   z-index: -5;
-  overflow: hidden; /* Blobs bahar nahi jayenge */
+  overflow: hidden;
 }
 
 .blob {
@@ -107,18 +107,21 @@ html, body {
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-/* --- HEADER --- */
+/* --- HEADER (FIXED LOCK) --- */
 .header {
-  position: sticky; top: 20px; 
-  /* Left/Right auto margin ensures center alignment if width < 100% */
-  margin: 0 auto;
+  position: fixed; /* FIXED se ye 100% lock rahega */
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%); /* Center me rakhne ke liye */
   max-width: 1100px;
-  width: calc(100% - 40px); /* Mobile padding included */
+  width: calc(100% - 40px); 
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255,255,255,0.8);
-  border-radius: 16px; z-index: 100; padding: 14px 0;
+  border-radius: 16px; 
+  z-index: 9999; /* Sabse upar dikhega */
+  padding: 14px 0;
   box-shadow: 0 8px 32px rgba(0,0,0,0.05);
 }
 .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; }
@@ -128,15 +131,23 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .nav a:hover { color: #6366F1; }
 .nav-links { display: flex; gap: 24px; }
 
-/* --- BUTTON --- */
+/* --- BUTTON FIX (WHITE TEXT) --- */
 .cta-btn {
-  padding: 14px 32px; border-radius: 50px; background: var(--primary-gradient);
-  color: #fff; font-weight: 700; font-size: 15px;
+  padding: 14px 32px; 
+  border-radius: 50px; 
+  background: var(--primary-gradient);
+  color: #fff !important; /* FIXED: Text ab white dikhega */
+  font-weight: 700; 
+  font-size: 15px;
   box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none; cursor: pointer; display: inline-block; position: relative; overflow: hidden;
+  border: none; 
+  cursor: pointer; 
+  display: inline-block; 
+  position: relative; 
+  overflow: hidden;
 }
-.cta-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.5); }
+.cta-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.5); color: #fff !important; }
 .cta-btn::before {
   content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: 0.6s;
@@ -269,23 +280,66 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 .skill:hover { background: #6366F1; color: #fff; border-color: #6366F1; transform: scale(1.05); }
 
-/* Experience */
-.experience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.exp-card {
-  position: relative; overflow: hidden; border-radius: 20px; height: 360px;
-  background: #000; display: flex; align-items: flex-end; transition: 0.4s;
+/* --- EXPERIENCE SECTION REDESIGN --- */
+/* Part 1: Text Cards (Grid) */
+.exp-text-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px; /* Gap between text and image slider */
 }
-.exp-bg {
-  position: absolute; inset: 0; background-size: cover; background-position: center;
-  opacity: 0.7; transition: 0.6s;
+.exp-text-card {
+  padding: 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.5); /* Glass style */
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  transition: 0.3s;
 }
-.exp-card:hover .exp-bg { transform: scale(1.1); opacity: 0.5; }
-.exp-content {
-  position: relative; z-index: 2; padding: 24px; width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff;
+.exp-text-card:hover {
+  background: #fff;
+  transform: translateY(-5px);
+  border-color: #a5b4fc;
 }
-.exp-content h3{ margin: 0 0 6px; font-size: 18px;}
-.exp-content p{ margin: 0; font-size: 14px; opacity: 0.9; color: #e5e5e5;}
+.exp-text-card h3 { margin: 0 0 10px; font-size: 20px; font-weight: 700; color: #1e293b; }
+.exp-text-card p { margin: 0; font-size: 15px; color: #475569; line-height: 1.5; }
+
+/* Part 2: Image Slider (Scroll Snap) */
+.image-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -24px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+/* Hide Scrollbars */
+.image-slider::-webkit-scrollbar { display: none; }
+.image-slider { -ms-overflow-style: none; scrollbar-width: none; }
+
+.slider-item {
+  min-width: 400px; /* Width of each image card */
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+  background: #fff;
+  border: 4px solid #fff;
+  transition: 0.3s;
+}
+.slider-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.slider-item:hover { transform: scale(1.02); }
+
 
 /* Profit */
 .profit-section { 
@@ -331,13 +385,16 @@ input:focus, textarea:focus { outline: none; border-color: #6366F1; background: 
   .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding-top: 80px !important; }
   .hero h1 { font-size: 40px; }
   .nav-links { display: none; }
-  .services, .experience-grid, .gallery, .profit-grid { grid-template-columns: 1fr; gap: 20px; }
+  .services, .profit-grid, .exp-text-grid { grid-template-columns: 1fr; gap: 20px; }
   .contact-box { padding: 24px; }
   /* Ensure NO side scrolling */
   .container, .hero, .section { padding-left: 20px !important; padding-right: 20px !important; width: 100% !important; overflow-x: hidden; }
   .brand-section { width: 100% !important; margin: 40px 0; border-radius: 16px; }
   .testimonial-text { font-size: 18px; }
   .testimonial-card { padding: 30px; }
+  
+  /* Mobile slider adjustments */
+  .slider-item { min-width: 85vw; }
 }
 
 /* Instagram Pulse */
@@ -479,42 +536,52 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
   <div class="skills-grid">
     <div class="skill">Meta Ads Expert</div>
     <div class="skill">Google Shopping & Search Ads</div>
+    <div class="skill">Full-Funnel Strategy</div>
+    <div class="skill">Fixing Funnel Leaks</div>
+    <div class="skill">Setup Pixel</div>
+    <div class="skill">Retargeting</div>
     <div class="skill">DTC Economics</div>
     <div class="skill">Creative Strategy</div>
     <div class="skill">Copywriting</div>
     <div class="skill">AI & Prompt Engineering</div>
     <div class="skill">A/B Testing</div>
     <div class="skill">Data Analysis</div>
-    <div class="skill">Conversion Optimization</div>
+    <div class="skill">Conversion Rate Optimization</div>
     <div class="skill">Shopify</div>
   </div>
 </section>
 
 <section id="experience" class="section container">
   <h2 class="reveal">Recent Experience</h2>
-  <div class="experience-grid">
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp1.png')"></div>
-      <div class="exp-content">
-        <h3>Jewelry Brand</h3>
-        <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
-      </div>
+  
+  <div class="exp-text-grid">
+    <div class="exp-text-card reveal">
+      <h3>Jewelry Brand</h3>
+      <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
     </div>
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp2.png')"></div>
-      <div class="exp-content">
-        <h3>Fashion Label</h3>
-        <p>Scaled to ₹60L revenue in 1 month</p>
-      </div>
+    <div class="exp-text-card reveal">
+      <h3>Fashion Label</h3>
+      <p>Scaled to ₹60L revenue in 1 month</p>
     </div>
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp3.png')"></div>
-      <div class="exp-content">
-        <h3>High-Volume Account</h3>
-        <p>Managed ₹30L monthly ad spend</p>
-      </div>
+    <div class="exp-text-card reveal">
+      <h3>High-Volume Account</h3>
+      <p>Managed ₹30L monthly ad spend</p>
     </div>
   </div>
+
+  <h3 class="reveal" style="margin-bottom:20px; font-size:18px; color:#64748b;">Result Snapshots (Swipe →)</h3>
+  <div class="image-slider reveal">
+    <div class="slider-item">
+      <img src="images/exp1.png" alt="Result 1">
+    </div>
+    <div class="slider-item">
+      <img src="images/exp2.png" alt="Result 2">
+    </div>
+    <div class="slider-item">
+      <img src="images/exp3.png" alt="Result 3">
+    </div>
+  </div>
+
 </section>
 
 <section class="profit-section">
@@ -560,7 +627,6 @@ footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px
   <div class="contact-box">
     <form action="https://formsubmit.co/businesswithmrpipu@gmail.com" method="POST">
       <input type="text" name="_honey" style="display:none">
-      
       <input type="hidden" name="_captcha" value="false">
 
       <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
