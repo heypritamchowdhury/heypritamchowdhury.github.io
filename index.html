@@ -109,10 +109,10 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 /* --- HEADER (FIXED LOCK) --- */
 .header {
-  position: fixed; /* FIXED se ye 100% lock rahega */
+  position: fixed; 
   top: 20px; 
   left: 50%;
-  transform: translateX(-50%); /* Center me rakhne ke liye */
+  transform: translateX(-50%); 
   max-width: 1100px;
   width: calc(100% - 40px); 
   background: rgba(255, 255, 255, 0.65);
@@ -120,7 +120,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255,255,255,0.8);
   border-radius: 16px; 
-  z-index: 9999; /* Sabse upar dikhega */
+  z-index: 9999; 
   padding: 14px 0;
   box-shadow: 0 8px 32px rgba(0,0,0,0.05);
 }
@@ -136,7 +136,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   padding: 14px 32px; 
   border-radius: 50px; 
   background: var(--primary-gradient);
-  color: #fff !important; /* FIXED: Text ab white dikhega */
+  color: #fff !important;
   font-weight: 700; 
   font-size: 15px;
   box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
@@ -280,18 +280,18 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 .skill:hover { background: #6366F1; color: #fff; border-color: #6366F1; transform: scale(1.05); }
 
-/* --- EXPERIENCE SECTION REDESIGN --- */
+/* --- EXPERIENCE SECTION REDESIGN (FIXED SIZING) --- */
 /* Part 1: Text Cards (Grid) */
 .exp-text-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-bottom: 40px; /* Gap between text and image slider */
+  margin-bottom: 40px; 
 }
 .exp-text-card {
   padding: 32px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.5); /* Glass style */
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
@@ -305,50 +305,49 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .exp-text-card h3 { margin: 0 0 10px; font-size: 20px; font-weight: 700; color: #1e293b; }
 .exp-text-card p { margin: 0; font-size: 15px; color: #475569; line-height: 1.5; }
 
-/* Part 2: Image Slider (Scroll Snap) - PREMIUM TOUCH */
+/* Part 2: Image Slider (Scroll Snap) - FIXED SIZING */
 .image-slider {
   display: flex;
-  gap: 32px; /* Thoda gap badhaya */
+  gap: 24px; 
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 40px; /* Shadow ke liye jagah */
+  padding-bottom: 40px;
   -webkit-overflow-scrolling: touch;
   margin: 0 -24px;
   padding-left: 24px;
   padding-right: 24px;
 }
-/* Hide Scrollbars */
 .image-slider::-webkit-scrollbar { display: none; }
 .image-slider { -ms-overflow-style: none; scrollbar-width: none; }
 
 .slider-item {
-  min-width: 450px; /* Width of each image card */
-  aspect-ratio: 16/9; /* Standard Landscape Ratio */
+  /* Desktop Size: Smaller and better ratio */
+  min-width: 380px; 
+  aspect-ratio: 16/9; 
   flex: 0 0 auto;
   scroll-snap-align: center;
-  border-radius: 24px; /* Soft Corners */
+  border-radius: 20px;
   overflow: hidden;
   
-  /* GLASS FRAME EFFECT */
+  /* Glass Effect */
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.7);
-  padding: 8px; /* Inner Spacing like a Frame */
+  padding: 6px; /* Thinner border for sleek look */
   
-  box-shadow: 0 15px 40px -10px rgba(0,0,0,0.08); /* Premium Soft Shadow */
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
   transition: 0.4s ease;
 }
 .slider-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 18px; /* Image ke corners bhi round */
+  border-radius: 16px;
   display: block;
 }
 .slider-item:hover { 
-  transform: translateY(-5px) scale(1.01); 
-  box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.15); /* Hover par halka purple glow */
-  border-color: #fff;
+  transform: translateY(-5px); 
+  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.15);
 }
 
 
@@ -404,8 +403,11 @@ input:focus, textarea:focus { outline: none; border-color: #6366F1; background: 
   .testimonial-text { font-size: 18px; }
   .testimonial-card { padding: 30px; }
   
-  /* Mobile slider adjustments */
-  .slider-item { min-width: 85vw; }
+  /* Mobile slider adjustments - Fixed Size Issue */
+  .slider-item { 
+    min-width: 85vw; /* Mobile width fixed to 85% of screen */
+    aspect-ratio: 4/3; /* Slightly taller for mobile readability */
+  }
 }
 
 /* Instagram Pulse */
