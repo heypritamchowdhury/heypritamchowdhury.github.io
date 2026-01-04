@@ -65,7 +65,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 /* --- BUTTONS --- */
 .btn {
-  padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 16px;
+  padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 15px;
   cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
   text-align: center; justify-content: center;
 }
@@ -93,30 +93,29 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .nav-links a { font-size: 15px; font-weight: 600; color: #cbd5e1; }
 .nav-links a:hover { color: #fff; }
 
-/* --- HERO SECTION (UPDATED: BIGGER & BOLDER) --- */
+/* --- HERO SECTION --- */
 .hero-wrapper {
-  padding: 200px 0 120px; /* Increased padding */
+  padding: 180px 0 100px;
   overflow: hidden;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr; /* Text gets slightly more space */
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
   align-items: center;
 }
 
 .hero-content { text-align: left; }
 
-/* Typography Upgrade - Bigger and Bolder */
 .hero h1 { 
-  font-size: 72px; /* Much Bigger */
-  line-height: 1.1; 
-  font-weight: 900; /* Extra Bold */
+  font-size: 62px; 
+  line-height: 1.15; 
+  font-weight: 900; 
   margin-bottom: 24px; 
-  letter-spacing: -2px; 
+  letter-spacing: -1.5px; 
   color: #fff;
-  text-transform: capitalize;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 .gradient-text {
   background: linear-gradient(135deg, #a5b4fc 0%, #6938ef 100%);
@@ -125,32 +124,41 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 
 .hero p { 
-  font-size: 24px; /* Increased readability */
+  font-size: 22px; 
   color: #cbd5e1; 
   margin-bottom: 40px; 
-  max-width: 650px; 
-  line-height: 1.5;
+  max-width: 580px; 
+  line-height: 1.6;
   font-weight: 500;
 }
 
-/* Tools Section */
-.tools-row { margin-top: 50px; display: flex; align-items: center; gap: 30px; position: relative; }
+/* Tools Section (LOGOS UPDATED FOR MANUAL UPLOAD) */
+.tools-row { margin-top: 40px; display: flex; align-items: center; gap: 30px; position: relative; }
 .tool-logos { display: flex; gap: 20px; align-items: center; }
-.tool-placeholder { color: #fff; font-weight: 700; font-size: 22px; display: flex; align-items: center; gap: 8px; opacity: 0.9; }
-.tools-text { font-size: 14px; color: var(--text-muted); position: relative; display: flex; align-items: flex-start; }
-.curved-arrow { position: absolute; top: -30px; left: -25px; opacity: 0.6; transform: scale(1.2); }
 
-/* Hero Image 3D Effect */
+/* Logo Images Style */
+.tool-icon-img {
+  height: 30px; /* Adjust height as needed */
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: grayscale(100%) brightness(200%); /* Makes them white/bright */
+  transition: 0.3s;
+}
+.tool-icon-img:hover { filter: grayscale(0) brightness(100%); opacity: 1; transform: scale(1.05); }
+
+.tools-text { font-size: 14px; color: var(--text-muted); position: relative; display: flex; align-items: flex-start; }
+.curved-arrow { position: absolute; top: -25px; left: -20px; opacity: 0.6; }
+
+/* Hero Image */
 .hero-image-container { position: relative; perspective: 1500px; }
 .hero-collage-img {
-  width: 100%; height: auto; 
-  /* No Border Radius for collage usually, or small */
-  transform: rotateY(-12deg) rotateX(5deg) scale(1);
-  box-shadow: 30px 30px 80px rgba(0,0,0,0.6);
-  transition: transform 0.6s ease;
-  filter: brightness(1.1);
+  width: 100%; height: auto; border-radius: 16px;
+  transform: rotateY(-10deg) rotateX(5deg) scale(0.95);
+  box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
+  transition: transform 0.5s ease;
 }
-.hero-collage-img:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
+.hero-collage-img:hover { transform: rotateY(0deg) rotateX(0deg) scale(1); }
 
 /* --- MARQUEE --- */
 .marquee-section { padding: 40px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); background: rgba(255,255,255,0.01); margin-bottom: 80px; text-align: center; }
@@ -436,9 +444,9 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); }
       
       <div class="tools-row">
         <div class="tool-logos">
-          <div class="tool-placeholder"><i data-lucide="shopping-bag" color="#96bf48" fill="#96bf48"></i> Shopify</div>
-          <div class="tool-placeholder"><i data-lucide="facebook" color="#1877F2" fill="#1877F2"></i></div>
-          <div class="tool-placeholder" style="font-weight:800; font-size:18px;">∞ Meta</div>
+          <img src="YOUR_SHOPIFY_LOGO.png" alt="Shopify" class="tool-icon-img">
+          <img src="YOUR_FACEBOOK_LOGO.png" alt="Facebook" class="tool-icon-img">
+          <img src="YOUR_META_LOGO.png" alt="Meta" class="tool-icon-img">
         </div>
         <div class="tools-text">
             <svg class="curved-arrow" width="40" height="40" viewBox="0 0 50 50" fill="none" stroke="white">
