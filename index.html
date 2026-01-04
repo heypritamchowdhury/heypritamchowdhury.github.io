@@ -1,656 +1,804 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>Pritam — Performance Marketer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "ut6byen8uk");
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 
 <style>
 :root {
-  --text-main: #0F172A;
-  --text-muted: #475569;
-  --primary-gradient: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+  --bg-dark: #020204; /* Deepest Black */
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --primary: #6938ef;
+  --primary-glow: rgba(105, 56, 239, 0.5);
+  --text-main: #FFFFFF;
+  --text-muted: #94A3B8;
+  --accent-blue: #3b82f6;
+  --gradient-text: linear-gradient(90deg, #FFFFFF 0%, #a5b4fc 100%);
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 
-/* FIX 1: STRICT SCROLL LOCK */
 html, body {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
   color: var(--text-main);
-  background: transparent;
   line-height: 1.6;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden; 
-  position: relative;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* --- 1. LIVE ANIMATED WALLPAPER --- */
-.ambient-bg {
+/* --- SNOWFALL EFFECT --- */
+.snowflake {
   position: fixed;
-  inset: 0; 
-  width: 100%;
-  height: 100%;
-  background: #F1F5F9;
-  z-index: -5;
-  overflow: hidden;
+  top: -20px;
+  color: #fff;
+  opacity: 0.9;
+  z-index: 9998;
+  pointer-events: none;
+  animation: fall linear forwards;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
 }
 
-.blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.7;
+@keyframes fall {
+  to { transform: translateY(110vh); }
 }
 
-.blob-1 {
-  top: -10%; left: -10%; width: 60vw; height: 60vw;
-  background: #A78BFA; 
-  animation: float 8s infinite alternate ease-in-out;
+/* --- GRID BACKGROUND --- */
+.grid-bg {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -2;
+  pointer-events: none;
 }
 
-.blob-2 {
-  bottom: -10%; right: -10%; width: 50vw; height: 50vw;
-  background: #60A5FA;
-  animation: float 10s infinite alternate-reverse ease-in-out;
-}
-
-.blob-3 {
-  top: 30%; left: 30%; width: 40vw; height: 40vw;
-  background: #F472B6; opacity: 0.5;
-  animation: float-center 12s infinite linear; 
-}
-
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, 60px) scale(1.05); }
-  100% { transform: translate(-40px, 20px) scale(0.95); }
-}
-
-@keyframes float-center {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  50% { transform: translate(-40%, -60%) rotate(180deg) scale(1.1); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-}
-
-/* --- 2. GRAIN TEXTURE --- */
-.noise-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -1; opacity: 0.07; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* --- CONTAINER --- */
-.container {
-  max-width: 1100px; 
-  margin: 0 auto; 
-  width: 100%; 
-  padding: 0 24px; 
-  position: relative; 
-  z-index: 2;
-}
-
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-/* --- HEADER (FIXED LOCK) --- */
-.header {
-  position: fixed; 
-  top: 20px; 
-  left: 50%;
-  transform: translateX(-50%); 
-  max-width: 1100px;
-  width: calc(100% - 40px); 
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.8);
-  border-radius: 16px; 
-  z-index: 9999; 
-  padding: 14px 0;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+/* --- BUTTONS --- */
+.btn {
+  padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 16px;
+  cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
+  text-align: center; justify-content: center;
 }
-.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 32px; }
-.brand { font-weight: 800; font-size: 22px; color: #1e293b; letter-spacing: -0.5px; }
-.nav { display: flex; gap: 32px; align-items: center; }
-.nav a { font-size: 14px; color: #64748b; font-weight: 600; }
-.nav a:hover { color: #6366F1; }
-.nav-links { display: flex; gap: 24px; }
+.btn-primary {
+  background: var(--primary); color: #fff; border: 1px solid var(--primary);
+  box-shadow: 0 0 15px rgba(105, 56, 239, 0.3);
+}
+.btn-primary:hover { 
+  background: #5b2ad8; 
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(105, 56, 239, 0.6);
+}
 
-/* --- BUTTON FIX (WHITE TEXT) --- */
-.cta-btn {
-  padding: 14px 32px; 
-  border-radius: 50px; 
-  background: var(--primary-gradient);
-  color: #fff !important; 
-  font-weight: 700; 
-  font-size: 15px;
-  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none; 
-  cursor: pointer; 
-  display: inline-block; 
-  position: relative; 
+/* --- HEADER --- */
+.header {
+  position: fixed; top: 0; left: 0; width: 100%;
+  background: rgba(2, 2, 4, 0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--card-border); z-index: 1000; padding: 16px 0;
+}
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-size: 24px; font-weight: 800; display:flex; align-items:center; gap:8px;}
+
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { font-size: 15px; font-weight: 600; color: #cbd5e1; }
+.nav-links a:hover { color: #fff; }
+
+/* --- HERO SECTION (UPDATED: BIGGER & BOLDER) --- */
+.hero-wrapper {
+  padding: 200px 0 120px; /* Increased padding */
   overflow: hidden;
 }
-.cta-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.5); color: #fff !important; }
-.cta-btn::before {
-  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: 0.6s;
-}
-.cta-btn:hover::before { left: 100%; }
 
-/* --- HERO --- */
-.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; padding: 140px 24px 100px; align-items: center; }
-.hero h1 { font-size: 56px; line-height: 1.1; letter-spacing: -2.5px; margin-bottom: 24px; font-weight: 800; color: #1e293b; }
-.gradient-text { background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.hero p { color: #475569; font-size: 20px; margin-bottom: 32px; max-width: 90%; font-weight: 500; }
-.trust-badge {
-  display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px;
-  background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px); color: #6366F1; border-radius: 50px;
-  font-size: 13px; font-weight: 700; margin-bottom: 24px;
-}
-.photo-card {
-  border-radius: 32px; overflow: hidden; position: relative;
-  background: rgba(255,255,255,0.4); padding: 8px;
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-  transform: rotate(2deg); transition: 0.5s ease; backdrop-filter: blur(8px);
-}
-.photo-card img { width: 100%; display: block; border-radius: 24px; }
-.photo-card:hover { transform: rotate(0deg) scale(1.02); }
-
-/* --- SECTIONS --- */
-.section { padding: 120px 24px; }
-.section h2 { font-size: 42px; letter-spacing: -1.5px; margin-bottom: 50px; font-weight: 800; color: #1e293b; }
-
-/* --- BRAND SECTION CENTERED --- */
-.brand-section {
-  text-align: center;
-  padding: 50px 24px;
-  background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.5);
-  margin-top: 60px;
-  margin-bottom: 60px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-.brand-label { font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: block; }
-.logo-grid {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; opacity: 0.9;
-}
-.logo-item { height: 32px; filter: grayscale(1); transition: 0.4s; cursor: pointer; }
-.logo-item:hover { filter: grayscale(0); transform: translateY(-3px); opacity: 1; }
-
-/* --- TESTIMONIAL STYLE --- */
-.testimonial-section {
-  padding: 60px 24px;
-  text-align: center;
-}
-.testimonial-card {
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 50px;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 32px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
-  position: relative;
-}
-.quote-icon {
-  font-size: 50px;
-  color: #6366F1;
-  opacity: 0.2;
-  position: absolute;
-  top: 20px;
-  left: 30px;
-  font-family: serif;
-}
-.testimonial-stars {
-  margin-bottom: 16px;
-  font-size: 18px;
-  letter-spacing: 1px;
-}
-.testimonial-text {
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.6;
-  color: #1E293B;
-  font-style: italic;
-  margin-bottom: 24px;
-}
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.author-info h4 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  color: #0F172A;
-}
-.author-info p {
-  margin: 0;
-  font-size: 14px;
-  color: #6366F1;
-  font-weight: 600;
-}
-
-/* Services */
-.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.service {
-  padding: 40px 32px; border-radius: 24px;
-  background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.8); transition: 0.3s;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-}
-.service:hover {
-  background: rgba(255, 255, 255, 0.9); transform: translateY(-8px);
-  box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.25); border-color: #a5b4fc;
-}
-.service h3 { margin: 0 0 12px; font-size: 22px; font-weight: 700; color: #1e293b; }
-.service p { margin: 0; color: #475569; font-size: 16px; line-height: 1.6; }
-
-/* Skills */
-.skills-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-.skill {
-  padding: 12px 24px; border-radius: 100px;
-  background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.7);
-  font-size: 15px; font-weight: 600; color: #334155; transition: 0.3s;
-}
-.skill:hover { background: #6366F1; color: #fff; border-color: #6366F1; transform: scale(1.05); }
-
-/* --- EXPERIENCE HYBRID (GRID DESKTOP / SLIDER MOBILE) --- */
-.experience-container {
+.hero-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: 1.1fr 0.9fr; /* Text gets slightly more space */
+  gap: 40px;
+  align-items: center;
 }
 
-.exp-card {
-  position: relative; overflow: hidden; border-radius: 20px; height: 360px;
-  background: #000; display: flex; align-items: flex-end; transition: 0.4s;
-  border: 1px solid rgba(255,255,255,0.5);
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
-}
-.exp-bg {
-  position: absolute; inset: 0; background-size: cover; background-position: center;
-  opacity: 0.7; transition: 0.6s;
-}
-.exp-card:hover .exp-bg { transform: scale(1.1); opacity: 0.5; }
-.exp-content {
-  position: relative; z-index: 2; padding: 24px; width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff;
-}
-.exp-content h3{ margin: 0 0 6px; font-size: 18px;}
-.exp-content p{ margin: 0; font-size: 14px; opacity: 0.9; color: #e5e5e5;}
+.hero-content { text-align: left; }
 
-/* Profit */
-.profit-section { 
-  padding: 120px 0; background: rgba(15, 23, 42, 0.95); color: #fff; 
-  position: relative; backdrop-filter: blur(20px); border-radius: 40px; 
-  margin: 0 auto; width: 100%;
+/* Typography Upgrade - Bigger and Bolder */
+.hero h1 { 
+  font-size: 72px; /* Much Bigger */
+  line-height: 1.1; 
+  font-weight: 900; /* Extra Bold */
+  margin-bottom: 24px; 
+  letter-spacing: -2px; 
+  color: #fff;
+  text-transform: capitalize;
 }
-.profit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.profit-box {
-  padding: 48px; border-radius: 24px;
-  background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px); transition: 0.3s;
+.gradient-text {
+  background: linear-gradient(135deg, #a5b4fc 0%, #6938ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.profit-box:hover { background: rgba(30, 41, 59, 0.9); transform: translateY(-5px); }
-.profit-title { font-size: 14px; font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; display: inline-block; padding: 6px 12px; border-radius: 6px; }
-.profit-list{ list-style:none; padding:0; }
-.profit-list li { margin-bottom: 20px; font-size: 18px; color: #cbd5e1; display: flex; align-items: center; gap: 12px; }
 
-/* Contact Form */
-#contact { text-align: center; }
-.contact-box {
-  max-width: 600px; padding: 48px; border-radius: 32px;
-  background: rgba(255,255,255,0.7); backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.8);
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
-  width: 100%; margin: 0 auto; text-align: left;
+.hero p { 
+  font-size: 24px; /* Increased readability */
+  color: #cbd5e1; 
+  margin-bottom: 40px; 
+  max-width: 650px; 
+  line-height: 1.5;
+  font-weight: 500;
 }
-input, textarea {
-  width: 100%; padding: 18px; border-radius: 14px;
-  border: 2px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.6);
-  margin-top: 10px; font-size: 16px; font-family: inherit; font-weight: 500; transition: 0.3s;
+
+/* Tools Section */
+.tools-row { margin-top: 50px; display: flex; align-items: center; gap: 30px; position: relative; }
+.tool-logos { display: flex; gap: 20px; align-items: center; }
+.tool-placeholder { color: #fff; font-weight: 700; font-size: 22px; display: flex; align-items: center; gap: 8px; opacity: 0.9; }
+.tools-text { font-size: 14px; color: var(--text-muted); position: relative; display: flex; align-items: flex-start; }
+.curved-arrow { position: absolute; top: -30px; left: -25px; opacity: 0.6; transform: scale(1.2); }
+
+/* Hero Image 3D Effect */
+.hero-image-container { position: relative; perspective: 1500px; }
+.hero-collage-img {
+  width: 100%; height: auto; 
+  /* No Border Radius for collage usually, or small */
+  transform: rotateY(-12deg) rotateX(5deg) scale(1);
+  box-shadow: 30px 30px 80px rgba(0,0,0,0.6);
+  transition: transform 0.6s ease;
+  filter: brightness(1.1);
 }
-input:focus, textarea:focus { outline: none; border-color: #6366F1; background: #fff; box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15); }
+.hero-collage-img:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
 
-/* Animation Reveal */
-.reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
+/* --- MARQUEE --- */
+.marquee-section { padding: 40px 0; border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border); background: rgba(255,255,255,0.01); margin-bottom: 80px; text-align: center; }
+.marquee-header { 
+  font-size: 14px; font-weight: 700; color: var(--text-muted); 
+  text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; display: block;
+}
+.marquee-container { overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-flex; gap: 60px; animation: scroll 30s linear infinite; }
+.brand-item { font-size: 20px; font-weight: 700; opacity: 0.6; color: #fff; transition:0.3s; }
+.brand-item:hover { opacity: 1; color: var(--primary); }
 
-/* Mobile Fixes */
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* --- CONGRATULATIONS --- */
+.congrats-wrapper { padding: 100px 0; text-align: center; position: relative; }
+.congrats-line { font-size: 52px; font-weight: 800; line-height: 1.5; color: #fff; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+.c-badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 30px; border-radius: 100px; font-weight: 800; text-transform: uppercase; font-size: 40px; transition: transform 0.3s ease; }
+.c-badge:hover { transform: scale(1.05) rotate(0deg) !important; }
+.badge-yellow { background-color: #FFD700; color: #000; transform: rotate(-3deg); }
+.badge-purple { background-color: #7C3AED; color: #fff; text-transform: none; transform: rotate(2deg); }
+.badge-green { background-color: #10B981; color: #fff; text-transform: capitalize; transform: rotate(-2deg); }
+
+/* --- SECTIONS GENERAL --- */
+.section { padding: 80px 0; }
+.section-title { text-align: center; margin-bottom: 60px; }
+.section-title h2 { font-size: 48px; font-weight: 700; margin-bottom: 16px; color: #fff; letter-spacing: -1px; }
+.about-text p { font-size: 18px; color: var(--text-muted); margin-bottom: 24px; max-width: 800px; margin: 0 auto 24px; text-align: center; }
+
+.review-box { background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); border: 1px solid var(--card-border); border-radius: 24px; padding: 40px; text-align: center; max-width: 800px; margin: 0 auto 100px; }
+
+/* --- UPGRADED BENTO GRID --- */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+.card { 
+  background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid var(--card-border); 
+  border-radius: 24px; 
+  padding: 40px 32px; 
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover { 
+  transform: translateY(-8px); 
+  border-color: rgba(105, 56, 239, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(105, 56, 239, 0.15);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 100%;
+  background: radial-gradient(circle at top right, rgba(105, 56, 239, 0.1), transparent 60%);
+  opacity: 0;
+  transition: 0.4s;
+}
+.card:hover::before { opacity: 1; }
+
+.card h3 { font-size: 22px; margin-bottom: 12px; color: #fff; position: relative; z-index: 2; }
+.card p { color: var(--text-muted); font-size: 15px; margin: 0; position: relative; z-index: 2; }
+.card-icon {
+  margin-bottom: 20px; display: inline-block; padding: 12px;
+  background: rgba(105, 56, 239, 0.1); border-radius: 12px; color: #a5b4fc; transition: 0.4s;
+}
+.card:hover .card-icon {
+  background: var(--primary); color: #fff; transform: scale(1.1) rotate(-5deg);
+}
+
+/* --- AGENCY SPLIT SECTION --- */
+.agency-split-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+/* Left: SVG Diagram */
+.cycle-diagram-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cycle-svg {
+  width: 100%;
+  max-width: 500px;
+  animation: rotateCycle 30s linear infinite;
+}
+@keyframes rotateCycle { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Right: Impact Card */
+.impact-card {
+  background: #05050A; /* Darker card */
+  border: 1px solid rgba(105, 56, 239, 0.2);
+  border-radius: 32px;
+  padding: 48px;
+  position: relative;
+  box-shadow: 0 0 40px rgba(105, 56, 239, 0.05);
+}
+.ai-icon-chip {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+.impact-card h3 {
+  font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: #fff;
+}
+.impact-card p {
+  color: var(--text-muted); font-size: 16px; margin-bottom: 32px; line-height: 1.6;
+}
+.impact-list {
+  list-style: none; padding: 0; margin: 0 0 40px 0;
+}
+.impact-list li {
+  display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;
+  color: #e2e8f0; font-size: 16px;
+}
+.check-icon {
+  color: var(--accent-blue); background: rgba(59, 130, 246, 0.1);
+  padding: 2px; border-radius: 50%;
+}
+
+/* Process Mini Box */
+.process-mini-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.process-step {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.step-left { display: flex; align-items: center; gap: 16px; }
+.step-num { 
+  width: 32px; height: 32px; background: rgba(255,255,255,0.1); 
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #fff; font-size: 14px;
+}
+.step-text { color: #fff; font-weight: 600; font-size: 16px; }
+.step-arrow { color: var(--text-muted); }
+.step-icon-right { opacity: 0.5; }
+
+
+/* --- SKILLS MARQUEE --- */
+.skills-section-full { width: 100%; overflow: hidden; padding: 60px 0; background: transparent; position: relative; }
+.skill-track { display: flex; gap: 24px; width: max-content; animation: skillScroll 40s linear infinite; }
+.skill-track.reverse { animation-direction: reverse; margin-top: 30px; }
+.skill-track:hover { animation-play-state: paused; }
+
+.skill-pill {
+  padding: 16px 36px; border-radius: 100px; font-weight: 800; font-size: 20px;
+  color: #fff; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex; align-items: center; gap: 12px; white-space: nowrap;
+  background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  position: relative; overflow: hidden;
+}
+
+.skill-pill::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent);
+  border-radius: 100px 100px 0 0; pointer-events: none;
+}
+
+.skill-pill:hover { 
+  transform: scale(1.1); border-color: rgba(255,255,255,0.4);
+  box-shadow: 0 0 20px rgba(105, 56, 239, 0.4); z-index: 10; 
+  background: var(--primary); border-color: var(--primary); color: #fff;
+}
+
+.pill-purple { border-color: #7C3AED; color: #d8b4fe; }
+.pill-green { border-color: #10B981; color: #6ee7b7; }
+.pill-red { border-color: #EF4444; color: #fca5a5; }
+.pill-black { border-color: #94a3b8; background: rgba(0,0,0,0.6); }
+.pill-orange { border-color: #F59E0B; color: #fcd34d; }
+
+@keyframes skillScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* --- MODAL POPUP --- */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); z-index: 9999;
+  display: none; justify-content: center; align-items: center;
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.modal-overlay.active { display: flex; opacity: 1; }
+
+.modal-content {
+  background: #0F172A; border: 1px solid rgba(255,255,255,0.1); width: 90%; max-width: 500px;
+  border-radius: 24px; padding: 30px; position: relative;
+  transform: scale(0.9); transition: transform 0.3s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.modal-overlay.active .modal-content { transform: scale(1); }
+.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+
+.budget-slider-container { margin: 25px 0; }
+.budget-labels { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 12px; margin-top: 10px; }
+input[type=range] { width: 100%; -webkit-appearance: none; height: 6px; background: #334155; border-radius: 5px; outline: none; padding: 0; border: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: var(--primary); border-radius: 50%; cursor: pointer; box-shadow: 0 0 10px var(--primary); }
+
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+.comp-box { padding: 40px; border-radius: 24px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.4); }
+.comp-title { font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; }
+.bad { border-color: rgba(239, 68, 68, 0.3); } .bad .comp-title { color: #f87171; }
+.good { border-color: var(--primary); background: rgba(105, 56, 239, 0.05); } .good .comp-title { color: #a5b4fc; }
+.comp-list { list-style: none; padding: 0; }
+.comp-list li { margin-bottom: 16px; font-size: 16px; display: flex; gap: 10px; color: #e2e8f0; }
+
+.faq-item { border-bottom: 1px solid var(--card-border); margin-bottom: 16px; }
+details { cursor: pointer; padding: 16px 0; }
+summary { font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; align-items: center; color: #fff; }
+summary:after { content: '+'; font-size: 24px; color: var(--primary); }
+details[open] summary:after { content: '-'; }
+.faq-answer { padding-top: 16px; color: var(--text-muted); font-size: 16px; line-height: 1.6; }
+
+/* CONTACT FORM */
+.contact-form { max-width: 500px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 24px; border: 1px solid var(--card-border); }
+input, textarea { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); padding: 16px; border-radius: 12px; color: #fff; margin-bottom: 16px; font-family: inherit; }
+input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+
+.dm-link-container { text-align: center; margin-top: 24px; }
+.dm-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 15px; color: var(--text-muted);
+  transition: 0.3s;
+}
+.dm-link:hover { color: #fff; transform: translateY(-2px); }
+.dm-link i { color: #E1306C; }
+
 @media(max-width: 900px) {
-  .header { margin: 0; top: 0; border-radius: 0; border: none; border-bottom: 1px solid rgba(255,255,255,0.5); width: 100%; max-width: 100%; left: 0; transform: none; }
-  .header-inner { padding: 0 20px; }
-  
-  /* FIXED: Increased Padding Top to push content down below fixed header */
-  .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; padding-top: 160px !important; }
-  
-  .hero h1 { font-size: 36px; }
   .nav-links { display: none; }
-  .services, .profit-grid { grid-template-columns: 1fr; gap: 20px; }
-  .contact-box { padding: 24px; }
-  /* Ensure NO side scrolling */
-  .container, .hero, .section { padding-left: 20px !important; padding-right: 20px !important; width: 100% !important; overflow-x: hidden; }
-  .brand-section { width: 100% !important; margin: 40px 0; border-radius: 16px; }
-  .testimonial-text { font-size: 18px; }
-  .testimonial-card { padding: 30px; }
-  
-  /* HYBRID MOBILE SLIDER LOGIC */
-  .experience-container {
-    display: flex; /* Makes it a slider on mobile */
-    gap: 16px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 20px;
-    margin: 0 -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  /* Hide scrollbar */
-  .experience-container::-webkit-scrollbar { display: none; }
-  
-  .exp-card {
-    min-width: 300px; /* Small compact size for mobile */
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-  }
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-content { text-align: center; }
+  .hero h1 { font-size: 48px; }
+  .tools-row { justify-content: center; }
+  .hero-collage-img { transform: none; margin-top: 40px; }
+  .congrats-line { font-size: 28px; gap: 8px; margin-bottom: 10px; }
+  .c-badge { font-size: 22px; padding: 5px 15px; }
+  .grid-3, .comp-grid, .agency-split-container { grid-template-columns: 1fr; }
+  .impact-card { padding: 30px; }
+  .cycle-diagram-wrapper { margin-bottom: 40px; }
 }
-
-/* Instagram Pulse */
-@keyframes insta-pulse {
-  0% { transform: scale(1); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
-  50% { transform: scale(1.04); box-shadow: 0 10px 25px rgba(220, 39, 67, 0.4); }
-  100% { transform: scale(1); box-shadow: 0 4px 10px rgba(220, 39, 67, 0.2); }
-}
-.instagram-link { display: block; text-align: center; margin-top: 32px; font-weight: 600; color: #64748b; }
-.instagram-link a {
-  display: inline-flex; align-items: center; gap: 10px; margin-left: 10px;
-  padding: 12px 30px; border-radius: 50px; color: white;
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  text-decoration: none; font-weight: 700; transition: all 0.3s ease;
-  animation: insta-pulse 2.5s infinite ease-in-out;
-}
-.instagram-link a:hover { transform: translateY(-3px); filter: brightness(1.1); animation: none; }
-
-/* Gallery */
-.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
-.media { border-radius: 20px; overflow: hidden; background: #000; transition: 0.4s; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
-.media:hover { transform: scale(1.03); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); }
-.media img, .media video { width: 100%; display: block; }
-
-footer { padding: 60px 24px; text-align: center; color: #64748b; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.05); background: rgba(255,255,255,0.5); backdrop-filter: blur(10px); }
 </style>
 </head>
-
 <body>
 
-<div class="ambient-bg">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-</div>
-<div class="noise-overlay"></div>
+<div class="grid-bg"></div>
 
 <header class="header">
-  <div class="header-inner">
-    <div class="brand">Pritam.</div>
+  <div class="container header-inner">
+    <div class="brand">
+        <i data-lucide="zap" fill="#6938ef" color="#6938ef"></i> Pritam.
+    </div>
+    
     <nav class="nav">
       <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Results</a>
+        <a href="#about">About Me</a>
+        <a href="#services">Service</a>
+        <a href="#experience">Experiences</a>
       </div>
-      <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit</a>
+      <a href="#contact" class="btn btn-primary">Book a FREE Audit Call</a>
     </nav>
   </div>
 </header>
 
-<section class="container hero reveal">
-  <div>
-    <div class="trust-badge">
-       ✨ Founder-Led Growth Specialist
-    </div>
-    <h1>Fix Unprofitable Growth in Your DTC Brand <br> <span class="gradient-text">with Profit-First Systems</span></h1>
-    <p>
-      I align Meta & Google Ads with creative strategy and real business metrics — so growth compounds without burning cash.
-    </p>
-    <div style="margin-top:32px">
-      <a href="#contact" class="cta-btn">Book a FREE 15-Min Audit Call</a>
-    </div>
-  </div>
-
-  <div class="photo-card reveal">
-    <img src="images/pritam.jpg" alt="Pritam">
-  </div>
-</section>
-
-<section class="container brand-section reveal">
-  <span class="brand-label">Brands I Worked With</span>
-  <div class="logo-grid">
-    <img class="logo-item" src="logos/brand1.png" alt="Brand 1">
-    <img class="logo-item" src="logos/brand2.png" alt="Brand 2">
-    <img class="logo-item" src="logos/brand3.png" alt="Brand 3">
-    <img class="logo-item" src="logos/brand4.png" alt="Brand 4">
-    <img class="logo-item" src="logos/brand5.png" alt="Brand 5">
-    <img class="logo-item" src="logos/brand6.png" alt="Brand 6">
-    <img class="logo-item" src="logos/brand7.png" alt="Brand 7">
-  </div>
-</section>
-
-<section id="about" class="section container">
-  <h2>About Me</h2>
-  <div style="max-width: 800px;">
-    <p style="font-size: 18px; color: var(--text-muted);">
-      I’m <strong style="color: var(--text-main);">Pritam</strong>, a performance marketer working with
-      <strong>founder-led DTC brands</strong> focused on profitable, controlled growth.
-    </p>
-    <p style="font-size: 18px; color: var(--text-muted);">
-      I run Meta & Google Ads, but my real work is aligning paid media with
-      <strong>margins, AOV, creatives, and cash flow</strong> — so scaling doesn’t break the business.
-    </p>
-    <p style="font-size: 18px; color: var(--text-muted);">
-      I’ve managed <strong style="color: var(--text-main);">₹30L+ in monthly ad spend</strong> and helped brands grow without chasing vanity ROAS.
-      I build <strong>profit-first systems</strong> founders can scale with clarity and confidence.
-    </p>
-  </div>
-</section>
-
-<section class="testimonial-section reveal">
-  <div class="container">
-    <div class="testimonial-card">
-      <div class="quote-icon">“</div>
-      <div class="testimonial-stars">⭐️⭐️⭐️⭐️⭐️</div>
-      <p class="testimonial-text">
-        Working with Pritam has been great. He understands marketing and business, not just ads, and his promise to manage only 2-3 clients at a time, his focused approach really helps brands grow.
-      </p>
-      <div class="testimonial-author">
-        <div class="author-info">
-          <h4>Founder</h4>
-          <p>NutroHealth</p>
+<section class="hero-wrapper">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <h1>Fix Unprofitable Growth in Your DTC Brand <br> with <span class="gradient-text">Profit-First Systems</span></h1>
+      <p>I align Meta & Google Ads with creative strategy and real business metrics — so growth compounds without burning cash.</p>
+      <a href="#contact" class="btn btn-primary">Book a FREE 15-Min Audit Call</a>
+      
+      <div class="tools-row">
+        <div class="tool-logos">
+          <div class="tool-placeholder"><i data-lucide="shopping-bag" color="#96bf48" fill="#96bf48"></i> Shopify</div>
+          <div class="tool-placeholder"><i data-lucide="facebook" color="#1877F2" fill="#1877F2"></i></div>
+          <div class="tool-placeholder" style="font-weight:800; font-size:18px;">∞ Meta</div>
+        </div>
+        <div class="tools-text">
+            <svg class="curved-arrow" width="40" height="40" viewBox="0 0 50 50" fill="none" stroke="white">
+                <path d="M40 10 Q 10 10 10 40" stroke-width="2" />
+                <path d="M5 35 L 10 40 L 15 35" stroke-width="2" />
+            </svg>
+            <span style="font-size:12px; margin-left:10px; margin-top:10px;">Tools we've perfected</span>
         </div>
       </div>
     </div>
+    <div class="hero-image-container">
+      <img src="68087bf29069e11fdf5d4e30_Group 77.avif" alt="Ads Collage" class="hero-collage-img">
+    </div>
   </div>
 </section>
-<section id="services" class="section container">
-  <h2 class="reveal">What I Deliver</h2>
-  <div class="services">
-    <div class="service reveal">
-      <h3>Paid Ads</h3>
-      <p>Meta & Google Ads execution. Full-funnel setup, rigorous testing, and stability at scale.</p>
+
+<div class="marquee-section">
+  <span class="marquee-header">Brands I Worked With</span>
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <span class="brand-item">The Formal Club</span><span class="brand-item">•</span>
+      <span class="brand-item">Accent Mirror</span><span class="brand-item">•</span>
+      <span class="brand-item">EVA</span><span class="brand-item">•</span>
+      <span class="brand-item">KM20+</span><span class="brand-item">•</span>
+      <span class="brand-item">Parama Calcutta</span><span class="brand-item">•</span>
+      <span class="brand-item">DameHealth</span><span class="brand-item">•</span>
+      <span class="brand-item">Classiya</span><span class="brand-item">•</span>
+      <span class="brand-item">The Formal Club</span><span class="brand-item">•</span>
+      <span class="brand-item">Accent Mirror</span><span class="brand-item">•</span>
+      <span class="brand-item">EVA</span><span class="brand-item">•</span>
+      <span class="brand-item">KM20+</span><span class="brand-item">•</span>
+      <span class="brand-item">Parama Calcutta</span><span class="brand-item">•</span>
+      <span class="brand-item">DameHealth</span><span class="brand-item">•</span>
+      <span class="brand-item">Classiya</span><span class="brand-item">•</span>
     </div>
-    <div class="service reveal">
+  </div>
+</div>
+
+<section class="congrats-wrapper container">
+  <div class="congrats-line">
+    <span class="c-badge badge-yellow">CONGRATULATIONS</span>
+    <span>On Being Here</span>
+  </div>
+  <div class="congrats-line">
+    <span>To</span>
+    <span class="c-badge badge-purple">Grow, Scale & Create ✌️</span>
+    <span>Something</span>
+  </div>
+  <div class="congrats-line">
+    <span>Incredible, You've Found The Right</span>
+    <span class="c-badge badge-green">Partner</span>
+  </div>
+</section>
+
+<section id="about" class="section container about-text">
+  <div class="section-title"><h2>About Me</h2></div>
+  <p>I’m Pritam, a performance marketer working with founder-led DTC brands focused on profitable, controlled growth.</p>
+  <p>I run Meta & Google Ads, but my real work is aligning paid media with margins, AOV, creatives, and cash flow — so scaling doesn’t break the business.</p>
+  <p>I’ve managed ₹30L+ in monthly ad spend and helped brands grow without chasing vanity ROAS. I build profit-first systems founders can scale with clarity and confidence.</p>
+</section>
+
+<div class="container">
+  <div class="review-box">
+    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+    <div class="review-text">"Working with Pritam has been great. He understands marketing and business, not just ads, and his promise to manage only 2-3 clients at a time, his focused approach really helps brands grow."</div>
+    <div style="font-weight:700; color:#fff;">Founder</div>
+    <div style="color:var(--primary);">NutroHealth</div>
+  </div>
+</div>
+
+<section id="services" class="section container">
+  <div class="section-title"><h2>What I Deliver</h2></div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon"><i data-lucide="zap" size="28"></i></div>
+      <h3>Paid Ads</h3>
+      <p>Meta Ads ( Facebook Ad ) & Google Ads execution. Full-funnel setup, rigorous testing, and stability at scale.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><i data-lucide="pen-tool" size="28"></i></div>
       <h3>Creative Direction</h3>
       <p>Hooks, angles, briefs, and performance-led creative feedback.</p>
     </div>
-    <div class="service reveal">
+    <div class="card">
+      <div class="card-icon"><i data-lucide="trending-up" size="28"></i></div>
       <h3>Growth Strategy</h3>
       <p>Consulting on offers, AOV, and margins to ensure every ad rupee brings back profit.</p>
     </div>
   </div>
 </section>
 
-<section id="skills" class="section container reveal">
-  <h2>Core Capabilities</h2>
-  <div class="skills-grid">
-    <div class="skill">Meta Ads Expert</div>
-    <div class="skill">Google Shopping & Search Ads</div>
-    <div class="skill">Full-Funnel Strategy</div>
-    <div class="skill">Fixing Funnel Leaks</div>
-    <div class="skill">Setup Pixel</div>
-    <div class="skill">Retargeting</div>
-    <div class="skill">DTC Economics</div>
-    <div class="skill">Creative Strategy</div>
-    <div class="skill">Copywriting</div>
-    <div class="skill">AI & Prompt Engineering</div>
-    <div class="skill">A/B Testing</div>
-    <div class="skill">Data Analysis</div>
-    <div class="skill">Conversion Rate Optimization</div>
-    <div class="skill">Shopify</div>
+<section class="section" style="padding-bottom:0; overflow:hidden;">
+  <div class="container section-title"><h2>My Core Capabilities</h2><p>Click any skill to solve this problem for your brand</p></div>
+  
+  <div class="skills-section-full">
+    <div class="skill-track">
+      <div class="skill-pill pill-purple" onclick="openModal()">Meta Ads Expert 🎯</div>
+      <div class="skill-pill pill-green" onclick="openModal()">Google Shopping 🛍️</div>
+      <div class="skill-pill pill-red" onclick="openModal()">Full-Funnel Strategy 🔨</div>
+      <div class="skill-pill pill-black" onclick="openModal()">Fixing Funnel Leaks 🔧</div>
+      <div class="skill-pill pill-orange" onclick="openModal()">Setup Pixel ⚙️</div>
+      <div class="skill-pill pill-purple" onclick="openModal()">Retargeting 🔄</div>
+      <div class="skill-pill pill-purple" onclick="openModal()">Meta Ads Expert 🎯</div>
+      <div class="skill-pill pill-green" onclick="openModal()">Google Shopping 🛍️</div>
+      <div class="skill-pill pill-red" onclick="openModal()">Full-Funnel Strategy 🔨</div>
+      <div class="skill-pill pill-black" onclick="openModal()">Fixing Funnel Leaks 🔧</div>
+      <div class="skill-pill pill-orange" onclick="openModal()">Setup Pixel ⚙️</div>
+      <div class="skill-pill pill-purple" onclick="openModal()">Retargeting 🔄</div>
+    </div>
+
+    <div class="skill-track reverse">
+      <div class="skill-pill pill-green" onclick="openModal()">DTC Economics 📈</div>
+      <div class="skill-pill pill-red" onclick="openModal()">Creative Strategy 🎨</div>
+      <div class="skill-pill pill-black" onclick="openModal()">Copywriting ✍️</div>
+      <div class="skill-pill pill-orange" onclick="openModal()">AI & Prompt Eng 🤖</div>
+      <div class="skill-pill pill-purple" onclick="openModal()">A/B Testing 📊</div>
+      <div class="skill-pill pill-green" onclick="openModal()">CRO 🚀</div>
+      <div class="skill-pill pill-black" onclick="openModal()">Shopify 🛒</div>
+      <div class="skill-pill pill-green" onclick="openModal()">DTC Economics 📈</div>
+      <div class="skill-pill pill-red" onclick="openModal()">Creative Strategy 🎨</div>
+      <div class="skill-pill pill-black" onclick="openModal()">Copywriting ✍️</div>
+      <div class="skill-pill pill-orange" onclick="openModal()">AI & Prompt Eng 🤖</div>
+      <div class="skill-pill pill-purple" onclick="openModal()">A/B Testing 📊</div>
+      <div class="skill-pill pill-green" onclick="openModal()">CRO 🚀</div>
+      <div class="skill-pill pill-black" onclick="openModal()">Shopify 🛒</div>
+    </div>
   </div>
 </section>
 
 <section id="experience" class="section container">
-  <h2 class="reveal">Recent Experience</h2>
-  
-  <div class="experience-container">
-    
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp1.png')"></div>
-      <div class="exp-content">
-        <h3>Jewelry Brand</h3>
-        <p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p>
-      </div>
-    </div>
-    
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp2.png')"></div>
-      <div class="exp-content">
-        <h3>Fashion Label</h3>
-        <p>Scaled to ₹60L revenue in 1 month</p>
-      </div>
-    </div>
-    
-    <div class="exp-card reveal">
-      <div class="exp-bg" style="background-image:url('images/exp3.png')"></div>
-      <div class="exp-content">
-        <h3>High-Volume Account</h3>
-        <p>Managed ₹30L monthly ad spend</p>
-      </div>
-    </div>
-
+  <div class="section-title"><h2>Recent Experience</h2></div>
+  <div class="grid-3">
+    <div class="card"><h3>Jewelry Brand</h3><p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p></div>
+    <div class="card"><h3>Fashion Label</h3><p>Scaled to ₹60L revenue in 1 month</p></div>
+    <div class="card"><h3>High-Volume Account</h3><p>Managed ₹30L monthly ad spend</p></div>
   </div>
 </section>
 
-<section class="profit-section">
-  <div class="container reveal">
-    <h2 style="color:#fff; margin-bottom:50px">The Difference</h2>
-    <div class="profit-grid">
-      <div class="profit-box">
-        <div class="profit-title red" style="background: rgba(239,68,68,0.2); color: #FCA5A5;">THE OLD WAY</div>
-        <ul class="profit-list">
-          <li>✕ ROAS looks good, bank account empty</li>
-          <li>✕ Revenue spikes followed by crashes</li>
-          <li>✕ "Set and forget" mentality</li>
-        </ul>
+<section class="section container">
+  <div class="section-title">
+    <h2>What Can Our Facebook Ads Agency Do For You?</h2>
+  </div>
+
+  <div class="agency-split-container">
+    
+    <div class="cycle-diagram-wrapper">
+      <svg class="cycle-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" /><stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" /></linearGradient>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" /><stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" /></linearGradient>
+          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" /><stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" /></linearGradient>
+          <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" /><stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" /></linearGradient>
+        </defs>
+        
+        <path id="curve1" d="M 250, 50 A 200, 200 0 0, 1 450, 250" fill="none" />
+        <path id="curve2" d="M 450, 250 A 200, 200 0 0, 1 250, 450" fill="none" />
+        <path id="curve3" d="M 250, 450 A 200, 200 0 0, 1 50, 250" fill="none" />
+        <path id="curve4" d="M 50, 250 A 200, 200 0 0, 1 250, 50" fill="none" />
+
+        <path d="M 255, 60 A 190, 190 0 0, 1 440, 245" stroke="url(#grad1)" stroke-width="40" fill="none" />
+        <path d="M 440, 255 A 190, 190 0 0, 1 255, 440" stroke="url(#grad2)" stroke-width="40" fill="none" />
+        <path d="M 245, 440 A 190, 190 0 0, 1 60, 255" stroke="url(#grad3)" stroke-width="40" fill="none" />
+        <path d="M 60, 245 A 190, 190 0 0, 1 245, 60" stroke="url(#grad4)" stroke-width="40" fill="none" />
+
+        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
+          <textPath xlink:href="#curve1" startOffset="25%" text-anchor="middle">Optimisation</textPath>
+        </text>
+        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
+          <textPath xlink:href="#curve2" startOffset="25%" text-anchor="middle">Campaign</textPath>
+        </text>
+        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
+          <textPath xlink:href="#curve3" startOffset="25%" text-anchor="middle">Creatives</textPath>
+        </text>
+        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
+          <textPath xlink:href="#curve4" startOffset="25%" text-anchor="middle">Content Strategy</textPath>
+        </text>
+      </svg>
+    </div>
+
+    <div class="impact-card">
+      <div class="ai-icon-chip"><i data-lucide="cpu" color="#fff"></i></div>
+      <h3>Facebook Advertising Crafted For Maximum Impact</h3>
+      <p>We’re not just another Facebook ads agency. Our campaigns are tailored to your goals, your brand voice, and your customers’ behavior resulting in better reach, more engagement, and higher conversions.</p>
+      
+      <ul class="impact-list">
+        <li><i data-lucide="check" class="check-icon" size="16"></i> Strategy and targeting aligned with business objectives</li>
+        <li><i data-lucide="check" class="check-icon" size="16"></i> Conversion-optimized content and landing pages</li>
+        <li><i data-lucide="check" class="check-icon" size="16"></i> Weekly reporting, actionable insights, and full transparency</li>
+      </ul>
+
+      <div class="process-mini-box">
+        <div class="process-step">
+          <div class="step-left">
+            <div class="step-num">1</div>
+            <div class="step-text">Generate ideas</div>
+          </div>
+          <div class="step-icon-right"><i data-lucide="file-text" size="20" color="#fff"></i></div>
+        </div>
+        <div class="step-arrow">↓</div>
+        <div class="process-step">
+          <div class="step-left">
+            <div class="step-num">2</div>
+            <div class="step-text">Plan campaigns</div>
+          </div>
+          <div class="step-icon-right"><i data-lucide="clock" size="20" color="#fff"></i></div>
+        </div>
       </div>
-      <div class="profit-box" style="border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.1);">
-        <div class="profit-title green" style="background: rgba(34,197,94,0.2); color: #86EFAC;">MY SYSTEM</div>
-        <ul class="profit-list">
-          <li>✅ Profit built into the Media Buying Model</li>
-          <li>✅ Compounding scale without operational burn</li>
-          <li>✅ Daily optimization & Creative refresh</li>
-        </ul>
-      </div>
+
     </div>
   </div>
 </section>
 
-<section id="creative" class="section container">
-  <h2 class="reveal">Performance Creatives I Guided</h2>
-  <p style="color:var(--text-muted); margin-bottom:40px; font-size: 18px;" class="reveal">Data-backed Creative Testing Strategy.</p>
-  <div class="gallery">
-    <div class="media reveal"><img src="images/static1.jpg"></div>
-    <div class="media reveal"><img src="images/static2.jpg"></div>
-    <div class="media reveal"><img src="images/static3.jpg"></div>
-    
-    <div class="media reveal"><video src="videos/video1.mp4" autoplay muted loop></video></div>
-    <div class="media reveal"><video src="videos/video2.mp4" autoplay muted loop></video></div>
-    <div class="media reveal"><video src="videos/video3.mp4" autoplay muted loop></video></div>
+<section class="section container" style="text-align:center;">
+  <div class="section-title"><span style="color:var(--primary); font-weight:700; letter-spacing:1px; font-size:14px;">PROCESS</span><h2>How Our Facebook Ads Agency Works</h2></div>
+  <p style="max-width:600px; margin:0 auto 30px; color:var(--text-muted);">Our AI-powered workflow helps small businesses and eCommerce brands create high-performing Facebook ad campaigns with speed and precision.</p>
+  <a href="#contact" class="btn btn-primary">Book a Call</a>
+</section>
+
+<section class="section container">
+  <div class="section-title"><h2>The Difference (Us vs Them)</h2></div>
+  <div class="comp-grid">
+    <div class="comp-box bad"><div class="comp-title">THE OLD WAY</div><ul class="comp-list"><li>✕ ROAS looks good, bank account empty</li><li>✕ Revenue spikes followed by crashes</li><li>✕ "Set and forget" mentality</li></ul></div>
+    <div class="comp-box good"><div class="comp-title">MY SYSTEM</div><ul class="comp-list"><li>✅ Profit built into the Media Buying Model</li><li>✅ Compounding scale without operational burn</li><li>✅ Daily optimization & Creative refresh</li></ul></div>
   </div>
 </section>
 
-<section id="contact" class="section container reveal">
-  <h2>Let's Talk Growth</h2>
-  <div class="contact-box">
+<section class="section container">
+  <div class="section-title"><h2>Frequently asked questions</h2></div>
+  <div style="max-width:800px; margin:0 auto;">
+    <div class="faq-item"><details><summary>1. Is Facebook advertising effective for small businesses?</summary><div class="faq-answer">Absolutely. Facebook ads are one of the most cost-effective ways for small businesses & E-Commerce to reach local, targeted, or niche audiences.</div></details></div>
+    <div class="faq-item"><details><summary>2. How much should a small business spend on Facebook Ads?</summary><div class="faq-answer">We typically recommend small businesses start with a test budget between $500–$2,000/month.</div></details></div>
+    <div class="faq-item"><details><summary>3. What kind of results can an eCommerce brand expect?</summary><div class="faq-answer">Depending on your product-market fit, many eCommerce brands start seeing results like increased CTR, lower CAC, and consistent ROAS within the first 30–60 days.</div></details></div>
+    <div class="faq-item"><details><summary>4. I’ve tried boosting posts. How are real ads different?</summary><div class="faq-answer">Boosting posts is basic. Facebook Ads run through Meta’s Ads Manager allow advanced targeting, A/B testing, and creative customization.</div></details></div>
+    <div class="faq-item"><details><summary>5. How much does it cost to hire an agency?</summary><div class="faq-answer">We use a performance-aligned model, so you only pay more when you grow. No bloated retainers.</div></details></div>
+    <div class="faq-item"><details><summary>6. What makes us different?</summary><div class="faq-answer">Most agencies focus on ad spend. We focus on outcomes and profit-first systems.</div></details></div>
+    <div class="faq-item"><details><summary>7. Will my business benefit from hiring an agency?</summary><div class="faq-answer">If you’re struggling with rising CAC or stagnant ROAS, yes.</div></details></div>
+    <div class="faq-item"><details><summary>8. Should I run ads in-house or hire an agency?</summary><div class="faq-answer">In-house teams work if you have bandwidth and expertise. But most small businesses don’t. We give you access to expert systems immediately.</div></details></div>
+  </div>
+</section>
+
+<section id="contact" class="section container">
+  <div class="contact-form">
+    <h2 style="text-align:center; margin-bottom:24px;">Let's Talk Growth</h2>
     <form action="https://formsubmit.co/businesswithmrpipu@gmail.com" method="POST">
       <input type="text" name="_honey" style="display:none">
       <input type="hidden" name="_captcha" value="false">
-
-      <label style="font-weight:700; font-size:14px; margin-left:4px">Name</label>
+      
+      <label style="display:block; margin-bottom:8px; font-weight:600; font-size:14px;">Name</label>
       <input type="text" name="name" placeholder="Ex. Rahul Sharma" required>
       
-      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Contact</label>
-      <input type="text" name="contact" placeholder="Email or WhatsApp Number" required>
+      <label style="display:block; margin-bottom:8px; font-weight:600; font-size:14px;">Contact</label>
+      <input type="text" name="contact" placeholder="Email or Phone" required>
       
-      <label style="display:block;margin-top:20px; font-weight:700; font-size:14px; margin-left:4px">Challenge</label>
-      <textarea name="message" rows="4" placeholder="What's stopping you from scaling right now?" required></textarea>
+      <label style="display:block; margin-bottom:8px; font-weight:600; font-size:14px;">Message</label>
+      <textarea name="message" rows="4" placeholder="Your requirements..." required></textarea>
       
-      <div style="margin-top:32px">
-        <button class="cta-btn" style="width:100%" type="submit">Book a FREE 15-Min Audit Call</button>
-      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Book a FREE 15-Min Audit Call</button>
     </form>
     
-    <div class="instagram-link">
-      Or <a href="https://ig.me/m/pritam.roas">Directly DM Me</a>
+    <div class="dm-link-container">
+      <a href="https://ig.me/m/pritam.roas" class="dm-link">
+        <i data-lucide="instagram"></i> Or DM Me Directly
+      </a>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>© 2026 Pritam • Performance Marketer</p>
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3 style="color:#fff; margin-bottom:5px;">Schedule a Call</h3>
+    <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">Fill out this form to fix your growth bottleneck.</p>
+    
+    <form action="https://formsubmit.co/businesswithmrpipu@gmail.com" method="POST">
+      <input type="text" name="_honey" style="display:none">
+      <input type="hidden" name="_captcha" value="false">
+      
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="text" name="contact" placeholder="Email or Phone" required>
+      
+      <div class="budget-slider-container">
+        <label style="color:#fff; font-size:14px; font-weight:600;">Monthly Marketing Budget</label>
+        <div class="budget-labels">
+          <span>$1k</span>
+          <span>$50k+</span>
+        </div>
+        <input type="range" min="1000" max="50000" step="1000" name="budget">
+      </div>
+      
+      <textarea name="message" rows="3" placeholder="Current Marketing Channels..." required></textarea>
+      
+      <button type="submit" class="btn btn-primary" style="width:100%;">Submit</button>
+    </form>
   </div>
+</div>
+
+<footer style="text-align:center; padding:40px; border-top:1px solid var(--card-border); color:var(--text-muted); font-size:14px;">
+  <p>© 2026 Pritam • Performance Marketer</p>
 </footer>
 
 <script>
-  const observerOptions = { threshold: 0.1 };
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, observerOptions);
+  lucide.createIcons();
 
-  document.querySelectorAll('.reveal').forEach(el => {
-    observer.observe(el);
+  // Modal Logic
+  function openModal() {
+    const modal = document.getElementById('bookingModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('bookingModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto'; 
+  }
+
+  document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
   });
+
+  // --- SNOWFALL CYCLE SCRIPT ---
+  let snowInterval;
+
+  function startSnowCycle() {
+    // Start creating snow (LESS FREQUENT: 600ms)
+    snowInterval = setInterval(createSnowflake, 600);
+
+    // Stop after 15 seconds
+    setTimeout(() => {
+      clearInterval(snowInterval);
+    }, 15000); 
+
+    // Restart cycle after 20 seconds (15s snow + 5s pause)
+    setTimeout(startSnowCycle, 20000);
+  }
+
+  function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.innerHTML = '❄';
+    snowflake.classList.add('snowflake');
+    
+    // Random Position and Size
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    snowflake.style.animationDuration = Math.random() * 10 + 10 + 's'; // VERY SLOW (10s to 20s)
+    snowflake.style.opacity = Math.random() * 0.6 + 0.3; // Visible
+    snowflake.style.fontSize = Math.random() * 20 + 15 + 'px'; // Big: 15px to 35px
+    
+    document.body.appendChild(snowflake);
+    
+    // Remove after animation completes
+    setTimeout(() => {
+      snowflake.remove();
+    }, 20000);
+  }
+
+  // Initial Start
+  startSnowCycle();
+
 </script>
 
 </body>
