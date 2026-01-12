@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-<title>Pritam — Performance Marketer</title>
+<title>PritamGrows — Performance Marketer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -132,20 +132,27 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   font-weight: 500;
 }
 
-/* Tools Section (LOGOS UPDATED) */
+/* Tools Section (TEXT ONLY UPDATE) */
 .tools-row { margin-top: 40px; display: flex; align-items: center; gap: 30px; position: relative; }
-.tool-logos { display: flex; gap: 20px; align-items: center; }
+.tool-names { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
-/* Logo Images Style */
-.tool-icon-img {
-  height: 30px; 
-  width: auto;
-  object-fit: contain;
-  opacity: 0.9;
-  filter: grayscale(100%) brightness(200%); /* Logos white/bright */
+/* Tool Text Pill Style */
+.tool-text-pill {
+  font-size: 16px; 
+  font-weight: 700; 
+  color: #fff; 
+  background: rgba(255,255,255,0.05); 
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
   transition: 0.3s;
 }
-.tool-icon-img:hover { filter: grayscale(0) brightness(100%); opacity: 1; transform: scale(1.05); }
+.tool-text-pill:hover {
+  background: rgba(105, 56, 239, 0.2); 
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
 
 .tools-text { font-size: 14px; color: var(--text-muted); position: relative; display: flex; align-items: flex-start; }
 .curved-arrow { position: absolute; top: -25px; left: -20px; opacity: 0.6; }
@@ -229,7 +236,36 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   background: var(--primary); color: #fff; transform: scale(1.1) rotate(-5deg);
 }
 
-/* --- AGENCY SPLIT SECTION --- */
+/* --- UPGRADED RECENT EXPERIENCE (Metric Style) --- */
+.exp-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid var(--card-border);
+  border-radius: 32px;
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.exp-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  background: linear-gradient(180deg, rgba(105, 56, 239, 0.1) 0%, rgba(255,255,255,0.01) 100%);
+}
+.exp-badge {
+  font-size: 12px; font-weight: 700; color: var(--primary);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 16px; display: block;
+}
+.exp-stat {
+  font-size: 42px; font-weight: 800; color: #fff;
+  margin: 10px 0 16px; line-height: 1;
+}
+.exp-title { font-size: 18px; color: #cbd5e1; font-weight: 500; }
+.exp-desc { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+
+
+/* --- AGENCY SPLIT SECTION (3-Part Cycle Updated) --- */
 .agency-split-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -249,9 +285,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .cycle-svg {
   width: 100%;
   max-width: 500px;
-  animation: rotateCycle 30s linear infinite;
 }
-@keyframes rotateCycle { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 /* Right: Impact Card */
 .impact-card {
@@ -421,7 +455,7 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); }
 <header class="header">
   <div class="container header-inner">
     <div class="brand">
-        <i data-lucide="zap" fill="#6938ef" color="#6938ef"></i> Pritam.
+        <i data-lucide="zap" fill="#6938ef" color="#6938ef"></i> PritamGrows.
     </div>
     
     <nav class="nav">
@@ -443,10 +477,12 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); }
       <a href="#contact" class="btn btn-primary">Book a FREE 15-Min Audit Call</a>
       
       <div class="tools-row">
-        <div class="tool-logos">
-          <img src="images/shopify-logo.png" alt="Shopify" class="tool-icon-img">
-          <img src="images/facebook-logo.png" alt="Facebook" class="tool-icon-img">
-          <img src="images/meta-logo.png" alt="Meta" class="tool-icon-img">
+        <div class="tool-names">
+          <span class="tool-text-pill">Shopify</span>
+          <span class="tool-text-pill">Meta Ads</span>
+          <span class="tool-text-pill">Google Ads</span>
+          <span class="tool-text-pill">Google Sheets</span>
+          <span class="tool-text-pill">Google Analytics</span>
         </div>
         <div class="tools-text">
             <svg class="curved-arrow" width="40" height="40" viewBox="0 0 50 50" fill="none" stroke="white">
@@ -579,9 +615,24 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); }
 <section id="experience" class="section container">
   <div class="section-title"><h2>Recent Experience</h2></div>
   <div class="grid-3">
-    <div class="card"><h3>Jewelry Brand</h3><p>Scaled From ₹0 → ₹20L Revenue in 5 Months</p></div>
-    <div class="card"><h3>Fashion Label</h3><p>Scaled to ₹60L revenue in 1 month</p></div>
-    <div class="card"><h3>High-Volume Account</h3><p>Managed ₹30L monthly ad spend</p></div>
+    <div class="exp-card">
+      <span class="exp-badge">Jewelry Brand</span>
+      <div class="exp-stat">₹0 → ₹20L</div>
+      <div class="exp-title">Revenue Scaled</div>
+      <div class="exp-desc">In just 5 months from scratch</div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-badge">Fashion Label</span>
+      <div class="exp-stat">₹60L</div>
+      <div class="exp-title">Revenue Generated</div>
+      <div class="exp-desc">Achieved in 1 month via testing</div>
+    </div>
+    <div class="exp-card">
+      <span class="exp-badge">High Volume</span>
+      <div class="exp-stat">₹30L+</div>
+      <div class="exp-title">Ad Spend Managed</div>
+      <div class="exp-desc">Monthly budget handled profitably</div>
+    </div>
   </div>
 </section>
 
@@ -597,32 +648,18 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); }
         <defs>
           <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" /><stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" /></linearGradient>
           <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" /><stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" /></linearGradient>
-          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" /><stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" /></linearGradient>
-          <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" /><stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" /></linearGradient>
+          <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" /><stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" /></linearGradient>
         </defs>
         
-        <path id="curve1" d="M 250, 50 A 200, 200 0 0, 1 450, 250" fill="none" />
-        <path id="curve2" d="M 450, 250 A 200, 200 0 0, 1 250, 450" fill="none" />
-        <path id="curve3" d="M 250, 450 A 200, 200 0 0, 1 50, 250" fill="none" />
-        <path id="curve4" d="M 50, 250 A 200, 200 0 0, 1 250, 50" fill="none" />
+        <path d="M 127,127 A 175,175 0 0,1 373,127" stroke="url(#grad1)" stroke-width="40" fill="none" />
+        
+        <path d="M 373,127 A 175,175 0 0,1 250,425" stroke="url(#grad2)" stroke-width="40" fill="none" />
+        
+        <path d="M 250,425 A 175,175 0 0,1 127,127" stroke="url(#grad3)" stroke-width="40" fill="none" />
 
-        <path d="M 255, 60 A 190, 190 0 0, 1 440, 245" stroke="url(#grad1)" stroke-width="40" fill="none" />
-        <path d="M 440, 255 A 190, 190 0 0, 1 255, 440" stroke="url(#grad2)" stroke-width="40" fill="none" />
-        <path d="M 245, 440 A 190, 190 0 0, 1 60, 255" stroke="url(#grad3)" stroke-width="40" fill="none" />
-        <path d="M 60, 245 A 190, 190 0 0, 1 245, 60" stroke="url(#grad4)" stroke-width="40" fill="none" />
-
-        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
-          <textPath xlink:href="#curve1" startOffset="25%" text-anchor="middle">Optimisation</textPath>
-        </text>
-        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
-          <textPath xlink:href="#curve2" startOffset="25%" text-anchor="middle">Campaign</textPath>
-        </text>
-        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
-          <textPath xlink:href="#curve3" startOffset="25%" text-anchor="middle">Creatives</textPath>
-        </text>
-        <text width="500" fill="white" font-size="24" font-weight="bold" letter-spacing="1">
-          <textPath xlink:href="#curve4" startOffset="25%" text-anchor="middle">Content Strategy</textPath>
-        </text>
+        <text x="250" y="80" fill="white" font-size="28" font-weight="bold" text-anchor="middle">Paid Ads</text>
+        <text x="400" y="300" fill="white" font-size="28" font-weight="bold" text-anchor="middle">Growth Strategy</text>
+        <text x="100" y="300" fill="white" font-size="28" font-weight="bold" text-anchor="middle">Creative</text>
       </svg>
     </div>
 
@@ -744,7 +781,7 @@ input:focus, textarea:focus { outline: none; border-color: var(--primary); }
 </div>
 
 <footer style="text-align:center; padding:40px; border-top:1px solid var(--card-border); color:var(--text-muted); font-size:14px;">
-  <p>© 2026 Pritam • Performance Marketer</p>
+  <p>© 2026 PritamGrows • Performance Marketer</p>
 </footer>
 
 <script>
