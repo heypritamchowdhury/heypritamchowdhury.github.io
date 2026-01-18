@@ -60,10 +60,10 @@ html, body {
   z-index: -2; pointer-events: none;
 }
 
-/* CONTAINER (Fixed for Mobile Spacing) */
+/* CONTAINER */
 .container { 
   max-width: 1200px; margin: 0 auto; 
-  padding: 0 24px; /* Standard padding */
+  padding: 0 24px; 
   width: 100%;
 }
 
@@ -102,16 +102,15 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .nav-links a { font-size: 15px; font-weight: 500; color: #94A3B8; transition: color 0.3s; }
 .nav-links a:hover { color: #fff; }
 
-/* --- HERO SECTION (MASSIVE UPDATE) --- */
+/* --- HERO SECTION --- */
 .hero-wrapper { padding: 220px 0 120px; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
 .hero-content { text-align: left; }
 
-/* BIG & BOLD TEXT STYLE */
 .hero h1 { 
-  font-size: 92px; /* Massive Size */
+  font-size: 92px; 
   line-height: 1.05; 
-  font-weight: 900; /* Ultra Bold */
+  font-weight: 900; 
   margin-bottom: 30px; 
   letter-spacing: -3px; 
   color: #fff;
@@ -122,15 +121,15 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 .hero p { 
-  font-size: 26px; /* Bigger Subtext */
+  font-size: 26px; 
   color: #cbd5e1; 
   margin-bottom: 45px; 
   max-width: 680px; 
   line-height: 1.5; 
-  font-weight: 600; /* Bolder Subtext */
+  font-weight: 600; 
 }
 
-/* Tools Section (Text Pills) */
+/* Tools Section */
 .tools-row { margin-top: 50px; display: flex; align-items: center; gap: 30px; position: relative; }
 .tool-names { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .tool-text-pill {
@@ -222,7 +221,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .exp-title { font-size: 18px; color: #cbd5e1; font-weight: 500; }
 .exp-desc { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
 
-/* --- AGENCY SPLIT SECTION (3-Parts) --- */
+/* --- AGENCY SPLIT SECTION --- */
 .agency-split-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
 .cycle-diagram-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
 .cycle-svg { width: 100%; max-width: 500px; }
@@ -634,6 +633,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
   <div class="contact-form">
     <h2 style="text-align:center; margin-bottom:24px;">Let's Talk Growth</h2>
     <form action="https://formsubmit.co/pritamgrows@gmail.com" method="POST" onsubmit="gtag('event', 'generate_lead', {'event_category': 'Form', 'event_label': 'Audit Call Form'});">
+      <input type="hidden" name="_next" value="https://heypritamchowdhury.github.io/thank-you.html">
       <input type="text" name="_honey" style="display:none">
       <input type="hidden" name="_captcha" value="false">
       
@@ -664,6 +664,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
     <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">Fill out this form to fix your growth bottleneck.</p>
     
     <form action="https://formsubmit.co/pritamgrows@gmail.com" method="POST" onsubmit="gtag('event', 'generate_lead', {'event_category': 'Form', 'event_label': 'Modal Booking Form'});">
+      <input type="hidden" name="_next" value="https://heypritamchowdhury.github.io/thank-you.html">
       <input type="text" name="_honey" style="display:none">
       <input type="hidden" name="_captcha" value="false">
       
