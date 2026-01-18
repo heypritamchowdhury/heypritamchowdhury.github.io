@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZQHGJWHJ8W"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZQHGJWHJ8W');
-</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title>PritamGrows — Performance Marketer</title>
@@ -60,10 +52,10 @@ html, body {
   z-index: -2; pointer-events: none;
 }
 
-/* CONTAINER */
+/* CONTAINER (Fixed for Mobile Spacing) */
 .container { 
   max-width: 1200px; margin: 0 auto; 
-  padding: 0 24px; 
+  padding: 0 24px; /* Standard padding */
   width: 100%;
 }
 
@@ -102,15 +94,16 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .nav-links a { font-size: 15px; font-weight: 500; color: #94A3B8; transition: color 0.3s; }
 .nav-links a:hover { color: #fff; }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (MASSIVE UPDATE) --- */
 .hero-wrapper { padding: 220px 0 120px; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
 .hero-content { text-align: left; }
 
+/* BIG & BOLD TEXT STYLE */
 .hero h1 { 
-  font-size: 92px; 
+  font-size: 92px; /* Massive Size */
   line-height: 1.05; 
-  font-weight: 900; 
+  font-weight: 900; /* Ultra Bold */
   margin-bottom: 30px; 
   letter-spacing: -3px; 
   color: #fff;
@@ -121,15 +114,15 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 .hero p { 
-  font-size: 26px; 
+  font-size: 26px; /* Bigger Subtext */
   color: #cbd5e1; 
   margin-bottom: 45px; 
   max-width: 680px; 
   line-height: 1.5; 
-  font-weight: 600; 
+  font-weight: 600; /* Bolder Subtext */
 }
 
-/* Tools Section */
+/* Tools Section (Text Pills) */
 .tools-row { margin-top: 50px; display: flex; align-items: center; gap: 30px; position: relative; }
 .tool-names { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .tool-text-pill {
@@ -221,7 +214,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .exp-title { font-size: 18px; color: #cbd5e1; font-weight: 500; }
 .exp-desc { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
 
-/* --- AGENCY SPLIT SECTION --- */
+/* --- AGENCY SPLIT SECTION (3-Parts) --- */
 .agency-split-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
 .cycle-diagram-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
 .cycle-svg { width: 100%; max-width: 500px; }
@@ -371,7 +364,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
         <a href="#skills">Skills</a>
         <a href="#experience">Experiences</a>
       </div>
-      <a href="#contact" class="btn btn-primary" onclick="gtag('event', 'click', {'event_category': 'Button', 'event_label': 'Header Book Call'});">Book a FREE Audit Call</a>
+      <a href="#contact" class="btn btn-primary">Book a FREE Audit Call</a>
     </nav>
   </div>
 </header>
@@ -381,7 +374,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
     <div class="hero-content">
       <h1>Fix Unprofitable Growth in Your DTC Brand <br> with <span class="gradient-text">Profit-First Systems</span></h1>
       <p>I align Meta & Google Ads with creative strategy and real business metrics — so growth compounds without burning cash.</p>
-      <a href="#contact" class="btn btn-primary" onclick="gtag('event', 'click', {'event_category': 'Button', 'event_label': 'Hero Book Call'});">Book a FREE 15-Min Audit Call</a>
+      <a href="#contact" class="btn btn-primary">Book a FREE 15-Min Audit Call</a>
       
       <div class="tools-row">
         <div class="tool-names">
@@ -604,7 +597,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
 <section class="section container" style="text-align:center;">
   <div class="section-title"><span style="color:var(--primary); font-weight:700; letter-spacing:1px; font-size:14px;">PROCESS</span><h2>How Our Facebook Ads Agency Works</h2></div>
   <p style="max-width:600px; margin:0 auto 30px; color:var(--text-muted);">Our AI-powered workflow helps small businesses and eCommerce brands create high-performing Facebook ad campaigns with speed and precision.</p>
-  <a href="#contact" class="btn btn-primary" onclick="gtag('event', 'click', {'event_category': 'Button', 'event_label': 'Process Book Call'});">Book a Call</a>
+  <a href="#contact" class="btn btn-primary">Book a Call</a>
 </section>
 
 <section class="section container">
@@ -632,7 +625,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
 <section id="contact" class="section container">
   <div class="contact-form">
     <h2 style="text-align:center; margin-bottom:24px;">Let's Talk Growth</h2>
-    <form action="https://formsubmit.co/pritamgrows@gmail.com" method="POST" onsubmit="gtag('event', 'generate_lead', {'event_category': 'Form', 'event_label': 'Audit Call Form'});">
+    <form action="https://formsubmit.co/pritamgrows@gmail.com" method="POST">
       <input type="hidden" name="_next" value="https://heypritamchowdhury.github.io/thank-you.html">
       <input type="text" name="_honey" style="display:none">
       <input type="hidden" name="_captcha" value="false">
@@ -650,7 +643,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
     </form>
     
     <div class="dm-link-container">
-      <a href="https://ig.me/m/pritamgrows" class="dm-link" onclick="gtag('event', 'social_click', {'event_category': 'Social', 'event_label': 'Instagram DM'});">
+      <a href="https://ig.me/m/pritamgrows" class="dm-link">
         <i data-lucide="instagram"></i> Or DM Me Directly
       </a>
     </div>
@@ -663,7 +656,7 @@ input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px;
     <h3 style="color:#fff; margin-bottom:5px;">Schedule a Call</h3>
     <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">Fill out this form to fix your growth bottleneck.</p>
     
-    <form action="https://formsubmit.co/pritamgrows@gmail.com" method="POST" onsubmit="gtag('event', 'generate_lead', {'event_category': 'Form', 'event_label': 'Modal Booking Form'});">
+    <form action="https://formsubmit.co/pritamgrows@gmail.com" method="POST">
       <input type="hidden" name="_next" value="https://heypritamchowdhury.github.io/thank-you.html">
       <input type="text" name="_honey" style="display:none">
       <input type="hidden" name="_captcha" value="false">
